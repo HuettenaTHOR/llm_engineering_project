@@ -18,11 +18,10 @@ class BaseModel(ABC):
         This method should include the logic to build a conversation from the input data. """
         raise NotImplementedError("The build_conversation method must be implemented in the subclass.")
     
-    def build_conversation_from_system_prompt(self, system_prompt: str, user_input: str):
+    def build_conversation_from_system_prompt(self, system_prompt: str):
         
         return [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_input}
+            {"role": "system", "content": system_prompt}
         ]
         
         

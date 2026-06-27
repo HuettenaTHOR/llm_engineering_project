@@ -21,11 +21,10 @@ class GSM8KDataset(BaseModel):
         return self.dataset.shuffle(seed=seed).select(range(size))
     
     def postprocess_result(self, result: str):
-        # Postprocess the result if needed (e.g., strip whitespace)
-        if "####" in result:
-            return result.split("####")[1].strip()
-        else:
-            None
-        
-    def prompt_addition_for_output_tracing(self) -> str:
-        return "Always end your answer with a number. The number should be given after '####'. e.g. if the answer is 78, answer withh #### 78."
+        # Extract the gold answer string after the last '####' marker, or None.
+        if result is not None and "####" in result:
+            return result.split("####")[-1].strip()
+        return None
+   
+    def system_prompt(self, **kwargs) -> str:
+        return """You will be given a math problem. The solution to the problem is an integer. Your task is to provide the solution. Only provide the final answer as an integer. Think step by step. Always end your answer with a number. The number should be given after '####'. e.g. if the answer is 78, answer with #### 78. The math problem is: {PROBELM}""".format(PROBELM=kwargs.get("problem", ""))

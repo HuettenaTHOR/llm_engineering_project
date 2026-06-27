@@ -6,6 +6,7 @@ class HuggingFaceModel(BaseModel):
     def __init__(self, model_name: str, *args, **kwargs):
         super().__init__(model_name, *args, **kwargs)
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        print(f"Using device: {self.device}")
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.model = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto", torch_dtype="auto")
 
@@ -16,13 +17,12 @@ class HuggingFaceModel(BaseModel):
         inputs = self.tokenizer(input_text, return_tensors="pt").to(self.device)
         with torch.no_grad():
             outputs = self.model.generate(**inputs, max_new_tokens=max_tokens)
-        return self.tokenizer.decode(outputs[0], skip_special_tokens=True)
+        return self.tokenizer.decode(outputs[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True)
 
-        
+
+
     def build_conversation(self, conversation: list):
         """
         This method implements the logic to build a conversation from the input data for the HuggingFace model."""
         # assume the conversation is already in the correct format for the HuggingFace model
-        return self.tokenizer.apply_chat_template(conversation, tokenize=False)
-    
-    
+        return self.tokenizer.apply_chat_template(conversation, tokenize=False, add_generation_prompt=True)
