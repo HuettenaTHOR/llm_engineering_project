@@ -2,7 +2,7 @@ from models.base_model import BaseModel
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 
-class HuggingFaceModel(BaseModel):
+class GemmaModel(BaseModel):
     def __init__(self, model_name: str, *args, **kwargs):
         super().__init__(model_name, *args, **kwargs)
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -29,5 +29,4 @@ class HuggingFaceModel(BaseModel):
         """
         This method implements the logic to build a conversation from the input data for the HuggingFace model."""
         # assume the conversation is already in the correct format for the HuggingFace model
-        return self.tokenizer.apply_chat_template(conversation, tokenize=False, add_generation_prompt=True)
-        
+        return self.tokenizer.apply_chat_template(conversation, tokenize=False, add_generation_prompt=True, enable_thinking=True)

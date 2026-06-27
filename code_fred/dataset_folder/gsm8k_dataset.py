@@ -27,4 +27,4 @@ class GSM8KDataset(BaseModel):
         return None
    
     def system_prompt(self, **kwargs) -> str:
-        return """You will be given a math problem. The solution to the problem is an integer. Your task is to provide the solution. Only provide the final answer as an integer. Think step by step. Always end your answer with a number. The number should be given after '####'. e.g. if the answer is 78, answer with #### 78. The math problem is: {PROBELM}""".format(PROBELM=kwargs.get("problem", ""))
+        return """You will be given a math problem. The solution to the problem is an integer. Your task is to provide the solution. Only provide the final answer as an integer. Think step by step. Always end your answer with a number. The number should be given after '####'. e.g. if the answer is 78, answer with #### 78."""
