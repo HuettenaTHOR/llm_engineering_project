@@ -15,12 +15,19 @@
 ## Slice 0 — Hygiene & Correct Grading
 
 ### Issue #1 — Fix skeleton bugs (A1)
+**Status: DONE ✓** *(commit `2ae2c1b`)*
+
 **What:** Remove the two known correctness bugs so nothing downstream is built on broken grading.
 
 **How:**
 - `code_fred/run_base_test.py:24` — replace `model_output.strip() == expected_output.strip()` with an extracted-integer comparison using the new util from #2 (`extract_int(model_output) == extract_int(expected_output)` where the gold is parsed via the dataset's `####` rule). Until #2 lands, leave a `TODO` but do not ship the string-equality grade.
 - `code_fred/dataset_folder/gsm8k_dataset.py:23-28` — `postprocess_result`: the `else` branch has a bare `None` expression; change to `return None`. Also return the stripped value in the `####` branch (already does) and confirm it returns a *string*.
 - `gsm8k_dataset.py:30` — `prompt_addition_for_output_tracing` is defined as a **method** but used in `run_base_test.py:18` as an **attribute** (`dataset.prompt_addition_for_output_tracing` without `()`). Pick one: make it a `@property` or call it. Recommend `@property`.
+
+**What was done:**
+- Grading in `run_base_test.py` now uses `extract_float()` from `answer_extraction.py`; integer comparison via `int(pred) == int(gold)`.
+- `postprocess_result` `else` branch returns `None` correctly.
+- `prompt_addition_for_output_tracing` removed entirely; system prompt is passed directly via `dataset.system_prompt(...)` and the problem text is the user message (via `build_conversation_from_system_prompt(sys_prompt, user_input=input_text)`).
 
 **Acceptance criteria:**
 - Given a correct GSM8K answer, when graded, then it scores correct (no longer ~0%).
@@ -30,6 +37,8 @@
 ---
 
 ### Issue #2 — 3-tier answer-extraction util (A2)
+**Status: DONE (tests pending)** *(commit `2ae2c1b`)*
+
 **What:** A deterministic integer extractor shared by every metric.
 
 **How:**
@@ -40,6 +49,12 @@
 - No LLM calls. Pure stdlib `re`.
 - Add `code_fred/tests/test_extraction.py` (plain asserts or `pytest`).
 
+**What was done:**
+- `code_fred/answer_extraction.py` created with `extract_float(text) -> float | None`. Implements both tiers (Tier 1: last `####` match; Tier 2: last integer fallback) and returns `None` on failure.
+- Manual test cases included in the `__main__` block.
+- Note: function returns `float`, not `int`; callers cast via `int(pred)`. Rename to `extract_int` or keep `extract_float` — pick one consistently in #5/#6.
+- `tests/test_extraction.py` not yet created (formal `pytest` suite still TODO).
+
 **Acceptance criteria:**
 - `"…#### 47"` → `47`; `"… = 50."` (no `####`) → `50`; `"$1,234"` → `1234`; `"the answer is forty"` → `None`.
 - Multiple `####` → the integer after the **last** one wins.
@@ -48,12 +63,19 @@
 ---
 
 ### Issue #3 — Reproducibility scaffolding (A7)
+**Status: DONE ✓** *(commit `2ae2c1b`)*
+
 **What:** Fixed seeds, deterministic HF generation, pinned deps.
 
 **How:**
 - New `code_fred/seeding.py` with `set_all_seeds(seed=42)` calling `random.seed`, `numpy.random.seed`, `torch.manual_seed`, `torch.cuda.manual_seed_all`, and `transformers.set_seed`.
 - Ensure HF generation passes `do_sample=False` when temp==0 (see #6 / #4).
 - Create `requirements.txt` at repo root pinning at least `transformers`, `torch`, `datasets`, `anthropic`, `numpy`, `scipy` (scipy for McNemar/Wilson in #7), `tqdm`. Pin to the versions currently installed (`pip freeze | grep -Ei 'transformers|torch|datasets|anthropic|numpy|scipy|tqdm'`).
+
+**What was done:**
+- `code_fred/fixed_seeds.py` created with `set_all_seeds(seed)` covering `random`, `numpy`, `torch`, `torch.cuda`, and `transformers`. Called at the top of `run_base_test.py`.
+- All HF model classes (`HuggingFaceModel`, `Qwen25Model`, `GemmaModel`, `MistralModel`) use `do_sample = temperature > 0`; greedy at temp=0.
+- `requirements.txt` at repo root is fully pinned (`==`) and includes `transformers`, `torch`, `datasets`, `anthropic`, `numpy`, `scipy`, `statsmodels`, `matplotlib`, `tqdm`, `pytest`, and all transitive deps.
 
 **Acceptance criteria:**
 - `set_all_seeds(42)` called at the start of a run; two runs of the same config produce identical JSONL (local models).
@@ -64,6 +86,8 @@
 ## Slice 1 — Harness Core
 
 ### Issue #4 — Model loading: Qwen ladder + Haiku (A8)
+t**Status: DONE ✓** *(commit `2ae2c1b`)*
+
 **What:** A uniform model interface across the local Qwen ladder and the Anthropic API, with correct decoding params. **Fixes the deprecated Anthropic call.**
 
 **How:**
@@ -78,6 +102,16 @@
   - Use model id alias `claude-haiku-4-5`.
   - Drop the role-flattening `build_conversation` (it produced a single prompt string for the legacy endpoint).
 - Note `base_model.py:build_conversation_from_system_prompt` returns a list with a `{"role":"system"}` entry — that shape is fine for HF chat templates but the `AnthropicModel` must lift the system entry out into the `system=` param.
+
+**What was done:**
+- `models/__init__.py` now has named model-set tuples (`QWEN25_LADDER`, `MISTRAL_MODELS`, `GEMMA_MODELS`, `ANTHROPIC_MODELS`) and dispatches to dedicated classes. Unknown ids fall through to `HuggingFaceModel` (ad-hoc use).
+- `Qwen25Model` (new file): prompt-token slicing (`outputs[0][input_ids.shape[1]:]`), greedy/sampling decoupling via `do_sample`, `add_generation_prompt=True`. Overrides `build_conversation_from_system_prompt` to merge system+problem into a single system message (Qwen-specific).
+- `HuggingFaceModel`: same prompt-token slicing + greedy/sampling fix; dtype changed from `torch_dtype="auto"` to `dtype="bfloat16"`.
+- `GemmaModel` (new file): same as `HuggingFaceModel` but passes `enable_thinking=True` to `apply_chat_template`.
+- `MistralModel`: fully implemented with `Mistral3ForConditionalGeneration` + `FineGrainedFP8Config(dequantize=True)` for quantized loading.
+- `AnthropicModel`: rewritten — `anthropic.Anthropic()` client, `messages.create()` API, `split_system()` helper lifts `role:"system"` out into the `system=` param, returns `block.text` from the response.
+- `base_model.py`: `inference()` signature now includes `temperature=0.0`; `build_conversation_from_system_prompt` accepts `user_input` and appends it as a user message.
+- **Open item:** Haiku model id in `ANTHROPIC_MODELS` is `claude-haiku-4-5-25` — verify this matches the actual API id (expected: `claude-haiku-4-5-20251001`).
 
 **Acceptance criteria:**
 - Each Qwen size string loads and runs `inference()` on the 4060 Ti (7B in fp16) returning only the **completion** (no echoed prompt).
