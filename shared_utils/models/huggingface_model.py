@@ -7,8 +7,22 @@ class HuggingFaceModel(BaseModel):
         super().__init__(model_name, *args, **kwargs)
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         print(f"Using device: {self.device}")
-        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
-        self.model = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto", dtype="bfloat16")
+        try:
+            # trust_remote_code + dtype="auto" keep newer architectures (e.g. Qwen3.5)
+            # loadable without hardcoding a dtype the checkpoint may not ship.
+            self.tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
+            self.model = AutoModelForCausalLM.from_pretrained(
+                model_name, device_map="auto", dtype="auto", trust_remote_code=True,
+            )
+        except (OSError, ValueError) as e:
+            raise RuntimeError(
+                f"Could not load model '{model_name}'.\n"
+                f"  - Check the repo id is correct and public on HuggingFace.\n"
+                f"  - For brand-new architectures, update transformers: "
+                f"`pip install -U transformers`.\n"
+                f"  - For gated repos, log in first: `huggingface-cli login`.\n"
+                f"Original error: {e}"
+            ) from e
 
     def inference(self, conversation: list, max_tokens: int = 1000, temperature: float = 0.0) -> str:
         """

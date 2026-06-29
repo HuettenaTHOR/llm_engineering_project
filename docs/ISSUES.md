@@ -91,7 +91,7 @@ t**Status: DONE ✓** *(commit `2ae2c1b`)*
 **What:** A uniform model interface across the local Qwen ladder and the Anthropic API, with correct decoding params. **Fixes the deprecated Anthropic call.**
 
 **How:**
-- `code_fred/models/__init__.py` `load_model_from_str`: replace the placeholder ids with the real ladder — `Qwen/Qwen2.5-0.5B-Instruct`, `Qwen/Qwen2.5-1.5B-Instruct`, `Qwen/Qwen2.5-3B-Instruct`, `Qwen/Qwen2.5-7B-Instruct` (all `HuggingFaceModel`). Remove the bogus `Qwen/Qwen3.5-2B` / base `Qwen2.5-0.5B` entries. Keep `claude-haiku-4-5` → `AnthropicModel`.
+- `code_fred/models/__init__.py` `load_model_from_str`: register the suggested ladder — the **Qwen3.5 small series** `Qwen/Qwen3.5-0.8B`, `Qwen/Qwen3.5-2B`, `Qwen/Qwen3.5-4B`, `Qwen/Qwen3.5-9B` (all `HuggingFaceModel`). The ladder is **not pinned**: any other HF repo id passed as `--model` falls through to `HuggingFaceModel`, so newer models are testable without code changes. Keep `claude-haiku-4-5` → `AnthropicModel`.
 - `huggingface_model.py`:
   - `inference()` currently decodes `outputs[0]` which **includes the prompt tokens** — slice them off: decode only `outputs[0][inputs["input_ids"].shape[1]:]`. Otherwise extraction sees the echoed prompt.
   - Thread a `temperature`/`do_sample` param through; for temp 0 use `do_sample=False`.
@@ -114,7 +114,7 @@ t**Status: DONE ✓** *(commit `2ae2c1b`)*
 - **Open item:** Haiku model id in `ANTHROPIC_MODELS` is `claude-haiku-4-5-25` — verify this matches the actual API id (expected: `claude-haiku-4-5-20251001`).
 
 **Acceptance criteria:**
-- Each Qwen size string loads and runs `inference()` on the 4060 Ti (7B in fp16) returning only the **completion** (no echoed prompt).
+- Each Qwen size string loads (via `trust_remote_code`, `dtype="auto"`) and runs `inference()` on the 4060 Ti returning only the **completion** (no echoed prompt). Loading a bad/gated/too-new id raises a clear diagnostic (check id / `pip install -U transformers` / `huggingface-cli login`).
 - `load_model_from_str("claude-haiku-4-5")` returns a working model whose `inference()` hits the Messages API and returns text.
 - No reference remains to `client.completions.create` or `anthropic.Client(...)`.
 
@@ -142,17 +142,18 @@ t**Status: DONE ✓** *(commit `2ae2c1b`)*
 - `strategies/single_shot.py` `SingleShot`: one `model.inference`, one grade, one trace entry.
 - `strategies/verifier_loop.py` `SolverVerifierLoop(max_loops=5)`:
   - Solver: same model role; produces a candidate (answer for SolveTask; revised question `x_CE` for the counterfactual task — see #12).
-  - **Verifier: independent re-solve, sees only the question + the claimed answer, NOT the solver's reasoning trace** (anti-sycophancy — see DESIGN §6.1). It re-solves and compares.
-  - **Tier-1 feedback on rejection:** `"no — I solve it to <verifier_number>, not <target/claim>"`. Append to the solver's accumulating message history.
-  - Early-stop on accept; otherwise loop to `max_loops`. Final answer = last solver attempt if cap hit.
-  - Record `{iteration, candidate, solver_solve, verifier_number, verdict}` every iteration.
+  - **Verifier: a step-checker.** Each iteration it gets the problem + the solver's **full output** under a **static, dataset-independent system prompt** (`VERIFIER_SYSTEM_PROMPT`, in `CONSTANTS.py`); it reviews the steps and ends with `yes`/`no` (see DESIGN §6.1). Verdict = accept iff `yes`.
+  - **Feedback on rejection (`no`):** append the verifier's critique to the solver's accumulating message history ("A verifier reviewed your solution and judged it INCORRECT. Verifier feedback: …") and let the solver revise.
+  - Early-stop on `yes`; otherwise loop to `max_loops`. Final answer = last solver attempt if cap hit.
+  - Record `{iteration, candidate, solver_solve, verifier_output, verifier_says, verdict}` every iteration.
 - The empty `code_fred/agent.py` `Agent` class is superseded — either delete it or make it a thin alias for `Strategy`.
 - `max_loops` is a constructor arg (hand-settable — DESIGN locked this).
+- Verifier helpers (`build_verifier_messages`, `verifier_verdict`) live on `BaseTask` and are **task-agnostic** (static prompt, yes/no parse), so the same verifier works for solve and the (agentic) counterfactual task.
 
 **Acceptance criteria:**
 - `SingleShot` produces one answer + one trace entry.
-- `SolverVerifierLoop` early-stops on verifier accept; on rejection passes Tier-1 numeric feedback; respects `max_loops`; cap-hit → last attempt.
-- Verifier prompt contains only question + claimed answer (assert no solver reasoning is interpolated).
+- `SolverVerifierLoop` early-stops on verifier `yes`; on `no` feeds back the verifier's critique; respects `max_loops`; cap-hit → last attempt.
+- Verifier prompt contains the static system prompt + the question + the solver's full output (assert the solver output IS shown and the dataset solver prompt is NOT).
 - Every iteration is recorded.
 
 ---
@@ -168,7 +169,7 @@ t**Status: DONE ✓** *(commit `2ae2c1b`)*
 - Subset selection via `dataset.get_random_subset(n, seed)` (already exists).
 
 **Acceptance criteria:**
-- A smoke run (Qwen2.5-0.5B-Instruct, SolveTask, SingleShot, n=5) writes 5 valid JSONL records with the full trace + a config/git-hash/seed header.
+- A smoke run (default `Qwen/Qwen3.5-0.8B` or any `--model`, SolveTask, SingleShot, n=5) writes 5 valid JSONL records with the full trace + a config/git-hash/seed header.
 - Re-running the same config skips the 5 completed `item_id`s.
 - Records are append-flushed (killing the process mid-run keeps completed records).
 

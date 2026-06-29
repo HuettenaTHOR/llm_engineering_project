@@ -1,46 +1,77 @@
-from fixed_seeds import set_all_seeds
-from dataset_folder import load_dataset_of_string
-from models import load_model_from_str
-from tqdm import tqdm
-from answer_extraction import extract_float
+"""Smoke driver / CLI for the harness.
+
+Runs the SolveTask (#5) through one or both strategies (#6) via the config-driven runner (#7),
+which persists the complete per-item trace to results/*.jsonl. Accuracy is then reported by
+reading those JSONL files back -- analysis never re-touches a model (DESIGN 8).
+
+Examples:
+    python run_base_test.py                          # default model, both strategies, n=5
+    python run_base_test.py --model Qwen/Qwen3.5-8B --n 200
+    python run_base_test.py --strategy verifier_loop --max-loops 3
+"""
+import argparse
+import os
+
+from runner import RunConfig, run
+from io_jsonl import read_records
+from models import QWEN35_LADDER
+
+# Not pinned: override with --model, or set BENCH_MODEL to test newer models without flags.
+DEFAULT_MODEL = os.environ.get("BENCH_MODEL", "Qwen/Qwen3.5-0.8B")
+STRATEGIES = ("single_shot", "verifier_loop")
 
 
-def run_test_reasoning_baseline(model_name, dataset_name):
-    set_all_seeds(42)
-    model = load_model_from_str(model_name)
-    dataset = load_dataset_of_string(dataset_name)
-
-    metrics = {"correct": 0, "total": 0, "gen_fail": 0}
-
-    subset = dataset.get_random_subset(size=10, seed=42)  # small smoke subset for testing
-    for i in tqdm(range(len(subset)), desc=f"Testing {model_name} on {dataset_name}"):
-        example = subset[i]
-        input_text = example["question"]
-        expected_output = example["answer"]
-        sys_prompt = dataset.system_prompt(problem=input_text)
-        # Get the model's output
-        input_conversation = model.build_conversation_from_system_prompt(sys_prompt, user_input=input_text)
-        model_output = model.inference(input_conversation, max_tokens=1200, temperature=1.0)
-
-        # Grade on extracted integers, not full-string equality (Issue #1 fix).
-        pred = extract_float(model_output)
-        gold = extract_float(dataset.postprocess_result(expected_output))
-        print(f"\n\nExpected: {gold}\nModel pred: {pred}\nRaw output: {model_output}\n")
-
-        if pred is None:
-            metrics["gen_fail"] += 1  # unparseable output: not scored as correct
-        elif gold is not None and int(pred) == int(gold):
-            metrics["correct"] += 1
-        metrics["total"] += 1
-
-    accuracy = metrics["correct"] / metrics["total"] if metrics["total"] > 0 else 0
+def _report(label: str, out_path: str):
+    records = read_records(out_path)
+    total = len(records)
+    correct = sum(1 for r in records if r["final_correct"] is True)
+    gen_fail = sum(1 for r in records if r["gen_fail"])
+    accuracy = correct / total if total else 0
     print(
-        f"Model: {model_name}, Dataset: {dataset_name}, "
-        f"Accuracy: {accuracy:.2%} ({metrics['correct']}/{metrics['total']}), "
-        f"Gen-fail: {metrics['gen_fail']}/{metrics['total']}"
+        f"[{label}] {out_path}\n"
+        f"    Accuracy: {accuracy:.2%} ({correct}/{total}), Gen-fail: {gen_fail}/{total}"
     )
 
 
+def run_test_reasoning_baseline(model_name, dataset_name, n, max_loops, seed, temp, strategies):
+    """Drive the chosen strategies over a subset, writing JSONL and reporting accuracy."""
+    for strategy in strategies:
+        cfg = RunConfig(
+            model=model_name, task="solve", strategy=strategy,
+            dataset=dataset_name, n=n, max_loops=max_loops, seed=seed, temp=temp,
+        )
+        out_path = run(cfg)
+        _report(strategy, out_path)
+
+
+class _Formatter(argparse.ArgumentDefaultsHelpFormatter, argparse.RawDescriptionHelpFormatter):
+    """Show defaults *and* keep the epilog's line breaks."""
+
+
+def parse_args(argv=None):
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=_Formatter,
+        epilog="Suggested Qwen3.5 variants:\n  " + "\n  ".join(QWEN35_LADDER)
+        + "\n\nThe model is not pinned: pass any HuggingFace repo id as --model, or set the\n"
+        + "BENCH_MODEL env var to change the default (e.g. a newer model).",
+    )
+    parser.add_argument("--model", default=DEFAULT_MODEL,
+                        help="HF repo id or registered alias")
+    parser.add_argument("--dataset", default="gsm8k", help="dataset name")
+    parser.add_argument("--n", type=int, default=5, help="number of items")
+    parser.add_argument("--max-loops", type=int, default=5,
+                        help="max solver-verifier loops (verifier_loop only)")
+    parser.add_argument("--seed", type=int, default=42, help="RNG + subset seed")
+    parser.add_argument("--temp", type=float, default=0.0, help="sampling temperature")
+    parser.add_argument("--strategy", choices=(*STRATEGIES, "both"), default="both",
+                        help="which control flow to run")
+    return parser.parse_args(argv)
+
+
 if __name__ == "__main__":
-    # Example usage
-    run_test_reasoning_baseline("google/gemma-4-E2B-it", "gsm8k")
+    args = parse_args()
+    strategies = STRATEGIES if args.strategy == "both" else (args.strategy,)
+    run_test_reasoning_baseline(
+        args.model, args.dataset, args.n, args.max_loops, args.seed, args.temp, strategies,
+    )
