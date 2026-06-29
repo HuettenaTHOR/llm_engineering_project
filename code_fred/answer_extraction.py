@@ -25,7 +25,7 @@ if __name__ == "__main__":
         "The answer is 42.",
         "The answer is #### -42.",
         "The answer is -42.",
-        "Multiple numbers: 10 and #### 20."
+        "Multiple numbers: 10 and #### 20.",
         "multiple numbers: #### 10 and 20.",
         "Multiple numbers: #### 10 and #### 20.",
     ]
