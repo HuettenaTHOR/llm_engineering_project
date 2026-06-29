@@ -1,3 +1,5 @@
+from abc import ABC
+
 from shared_utils.models.base_model import BaseModel
 
 
@@ -35,7 +37,7 @@ class CounterfactualGeneratorBase(ABC):
         """
         raise NotImplementedError()
 
-    def verify_counter_factual(self, model: BaseModel, question: str, expected_result: str, prompt_template: str) -> Counterfactual_verification_result:
+    def verify_counter_factual(self, model: BaseModel, question: str, expected_result: str, prompt_template: str, extract_is_valid: bool) -> CounterfactualVerificationResult:
         """Uses a model to verify a counterfactual proposal."""
         raise NotImplementedError()
 

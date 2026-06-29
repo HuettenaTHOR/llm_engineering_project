@@ -1,3 +1,5 @@
+from collections.abc import Callable
+
 from code_seb.counterfactual_generator_base import CounterfactualGeneratorBase, CounterfactualProposalResult, CounterfactualVerificationResult
 from shared_utils.models.base_model import BaseModel
 
@@ -5,7 +7,7 @@ from shared_utils.models.base_model import BaseModel
 class CounterfactualGenerator(CounterfactualGeneratorBase):
     """Implements functions to generate and verify counterfactuals."""
 
-    @overrides
+
     def generate_counterfactual(self, model: BaseModel, base_benchmark_question, expected_result, prompt_template) -> CounterfactualProposalResult:
         """Uses a model to generate a counterfactual proposal.
         Args:
@@ -36,8 +38,7 @@ class CounterfactualGenerator(CounterfactualGeneratorBase):
 
 
 
-    @overrides
-    def verify_counter_factual(self, model: BaseModel, question: str, expected_result: str, prompt_template: str, extract_is_valid: bool) -> Counterfactual_verification_result:
+    def verify_counter_factual(self, model: BaseModel, question: str, expected_result: str, prompt_template: Callable, extract_is_valid: Callable[str, str]) -> CounterfactualVerificationResult:
         """Uses a model to verify a counterfactual proposal."""
         assert(isinstance(model, BaseModel))
         assert(question is not None)

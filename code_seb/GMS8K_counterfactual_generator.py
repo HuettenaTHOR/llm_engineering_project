@@ -1,4 +1,5 @@
 from code_seb.counterfactual_generator import CounterfactualGenerator
+from code_seb.counterfactual_generator_base import CounterfactualVerificationResult, CounterfactualProposalResult
 from shared_utils.dataset_folder.gsm8k_dataset import GSM8KDataset
 from shared_utils.models.base_model import BaseModel
 
@@ -52,7 +53,37 @@ class GMS8KCounterfactualGenerator(CounterfactualGenerator):
         extracted_result = self.gms8k.postprocess_result(inference_result)
         return extracted_result == expected_result
 
+    def verification_prompt_template(self, question: str, expected_result: str) -> str:
+        """Let the model solve weather the question results in the expected answer."""
+        prompt = f"""
+        You are a math solver. Solve the following math problem step by step.
+        At the end of your solution, write your final numerical answer on a new line in the format: #### <number>
 
+        Question: {question}
+        """
+        return prompt
 
+    def generate_and_verify_N(self, n: int) -> list[tuple[CounterfactualProposalResult, CounterfactualVerificationResult]]:
+        subset = self.gms8k.get_random_subset(n)
+        results = []
 
+        for example in subset:
+            question = example['question']
+            expected_result = self.gms8k.postprocess_result(example['answer'])
+
+            proposal = self.generate_counterfactual(
+                self.test_model, question, expected_result, self.prompt_template
+            )
+
+            verification = self.verify_counter_factual(
+                self.verifier_model,
+                proposal.counterfactual_proposal,
+                expected_result,
+                self.verification_prompt_template,
+                self.extract_is_valid,
+            )
+
+            results.append((proposal, verification))
+
+        return results
 
