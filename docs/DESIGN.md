@@ -80,12 +80,14 @@ Deterministic, no LLM extractor (saves budget):
 
 | Role | Models |
 |---|---|
-| Local ladder | **Qwen2.5-Instruct: 0.5B → 1.5B → 3B → 7B** (7B in fp16 on 16 GB) |
+| Local ladder | **Qwen3.5 small series: 0.8B → 2B → 4B → 9B** (suggested, not pinned) |
 | API (subset only) | **Claude Haiku** — used to confirm the trend transfers, conserving the $20 |
 
 One clean local family means model **size is the only varying variable** — exactly what the
-"larger models fail less" claim needs. `-Instruct` variants are required (base models won't
-follow the counterfactual instruction).
+"larger models fail less" claim needs. The ladder is the default suggestion only: the model is
+chosen by config (`--model` / `BENCH_MODEL` / `RunConfig.model`), so any HuggingFace repo id —
+including newer models — can be swapped in without code changes. Instruct/chat variants are
+required (base models won't follow the counterfactual instruction).
 
 ---
 
@@ -93,24 +95,29 @@ follow the counterfactual instruction).
 
 ### 6.1 Roles
 - **Solver:** has full context; attempts the task.
-- **Verifier:** **independently re-solves**, given only the question + the claimed answer —
-  **not** the solver's reasoning trace. This prevents the model from sycophantically agreeing
-  with a reasoning chain it can see.
+- **Verifier:** a **step-checker**. Each iteration it is shown the problem + the solver's
+  **full step-by-step output**, under a **static, dataset-independent system prompt**
+  (`VERIFIER_SYSTEM_PROMPT`, the same for every task). It checks the reasoning/arithmetic and
+  concludes with a single word — `yes` (correct) or `no` (incorrect).
 - Primary experiment: **same model plays both roles** (isolates "does self-verification help"
   from "does a smarter friend help").
+- **Tradeoff (was anti-sycophancy):** an earlier design had the verifier *independently
+  re-solve* seeing only the claimed answer, to avoid sycophantically agreeing with a visible
+  chain. The current design deliberately trades that away for a trace-aware critique — the
+  verifier reviews the actual steps. The same-model self-verification confound + possible
+  sycophancy is now an explicit limitation to surface in the write-up (§10).
 
-### 6.2 Feedback on rejection — Tier 1
-The verifier has already computed its own answer to decide yes/no. On rejection it returns
-`yes/no + its own computed number` (e.g. *"no — I solve your revised question to 45, not 47"*).
-This gives the solver a usable error signal **without** exposing the solver's trace, preserving
-the anti-sycophancy property.
+### 6.2 Feedback on rejection
+On a `no`, the verifier's **critique is fed back** into the solver's accumulating history
+("A verifier reviewed your solution and judged it INCORRECT. Verifier feedback: …"), and the
+solver revises. This gives the solver a step-level error signal, not just a number.
 
 ### 6.3 Loop control
 - `max_loops` is **hand-settable** (default 5).
-- **Early-stop** the moment the verifier accepts.
+- **Early-stop** the moment the verifier answers `yes`.
 - **Full accumulating multi-turn history** (solver sees all prior attempts + all feedback).
-- **Per-iteration logging** of `{candidate, solver's solve, verifier's number, verdict}` →
-  the "#loops vs. performance" curve falls out of a **single run**.
+- **Per-iteration logging** of `{candidate, solver's solve, verifier's full output, verifier's
+  yes/no, verdict}` → the "#loops vs. performance" curve falls out of a **single run**.
 - If the cap is hit without acceptance, the final answer is the last solver attempt.
 
 ---

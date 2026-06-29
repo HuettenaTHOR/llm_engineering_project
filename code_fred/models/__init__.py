@@ -1,6 +1,15 @@
 
 
 # The primary local ladder for the study. Any other HF repo id also works for ad-hoc testing.
+# Suggested ladder (the real Qwen3.5 small series). NOT pinned -- any HF repo id passed as
+# --model also works (it falls through to HuggingFaceModel below), so newer models are testable.
+QWEN35_LADDER = (
+    "Qwen/Qwen3.5-0.8B",
+    "Qwen/Qwen3.5-2B",
+    "Qwen/Qwen3.5-4B",
+    "Qwen/Qwen3.5-9B",
+)
+
 QWEN25_LADDER = (
     "Qwen/Qwen2.5-0.5B-Instruct",
     "Qwen/Qwen2.5-1.5B-Instruct",
@@ -28,6 +37,10 @@ def load_model_from_str(model_name: str):
     if model_name in ANTHROPIC_MODELS:
         from models.anthropic_model import AnthropicModel
         return AnthropicModel(model_name)
+    elif model_name in QWEN35_LADDER:
+        # Qwen3.5 instruct models use the standard system/user chat shape.
+        from models.huggingface_model import HuggingFaceModel
+        return HuggingFaceModel(model_name)
     elif model_name in QWEN25_LADDER:
         from models.Qwen25_model import Qwen25Model
         return Qwen25Model(model_name)
