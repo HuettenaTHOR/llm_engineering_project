@@ -19,7 +19,7 @@ GEMMA_MODELS = (
 
 )
 
-ANTHROPIC_MODELS = ("claude-haiku-4-5-25",)
+ANTHROPIC_MODELS = ("claude-haiku-4-5",)
 
 
 def load_model_from_str(model_name: str):

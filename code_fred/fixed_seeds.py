@@ -4,7 +4,7 @@ import torch
 import transformers
 
 
-def set_all_seeds(seed: int):
+def set_all_seeds(seed: int = 42):
 
     random.seed(seed)
     np.random.seed(seed)
