@@ -3,6 +3,8 @@
 # The primary local ladder for the study. Any other HF repo id also works for ad-hoc testing.
 # Suggested ladder (the real Qwen3.5 small series). NOT pinned -- any HF repo id passed as
 # --model also works (it falls through to HuggingFaceModel below), so newer models are testable.
+
+
 QWEN35_LADDER = (
     "Qwen/Qwen3.5-0.8B",
     "Qwen/Qwen3.5-2B",
@@ -35,22 +37,22 @@ def load_model_from_str(model_name: str):
     """ loads the model based on the provided model name. """
 
     if model_name in ANTHROPIC_MODELS:
-        from models.anthropic_model import AnthropicModel
+        from shared_utils.models.anthropic_model import AnthropicModel
         return AnthropicModel(model_name)
     elif model_name in QWEN35_LADDER:
         # Qwen3.5 instruct models use the standard system/user chat shape.
-        from models.huggingface_model import HuggingFaceModel
-        return HuggingFaceModel(model_name)
+        from shared_utils.models.qwen35_model import Qwen35Model
+        return Qwen35Model(model_name)
     elif model_name in QWEN25_LADDER:
-        from models.Qwen25_model import Qwen25Model
+        from shared_utils.models.qwen25_model import Qwen25Model
         return Qwen25Model(model_name)
     elif model_name in MISTRAL_MODELS:
-        from models.mistral_model import MistralModel
+        from shared_utils.models.mistral_model import MistralModel
         return MistralModel(model_name)
     elif model_name in GEMMA_MODELS:
-        from models.gemma_model import GemmaModel
+        from shared_utils.models.gemma_model import GemmaModel
         return GemmaModel(model_name)
     else:
         # Treat anything else as a HuggingFace repo id (Qwen ladder or any model to try out).
-        from models.huggingface_model import HuggingFaceModel
+        from shared_utils.models.huggingface_model import HuggingFaceModel
         return HuggingFaceModel(model_name)

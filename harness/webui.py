@@ -15,7 +15,7 @@ import os
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlparse, parse_qs
 
-from io_jsonl import read_records, read_meta
+from harness.io_jsonl import read_records, read_meta
 
 RESULTS_DIR = "results"
 

@@ -8,8 +8,10 @@ def load_dataset_of_string(dataset_name: str):
     Returns:
         Dataset: The loaded dataset.
     """
+    print(f"Loading dataset '{dataset_name}'...")
     if dataset_name == "gsm8k":
-        from dataset_folder.gsm8k_dataset import GSM8KDataset
+        from shared_utils.dataset_folder.gsm8k_dataset import GSM8KDataset
+        print("import done")
         return GSM8KDataset()
     else:
         raise ValueError(f"Dataset '{dataset_name}' is not supported.")

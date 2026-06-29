@@ -1,4 +1,4 @@
-from models.base_model import BaseModel
+from shared_utils.models.base_model import BaseModel
 import anthropic
 
 # Map our friendly registry aliases to the exact model ids the Anthropic API accepts.

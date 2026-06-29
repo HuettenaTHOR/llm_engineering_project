@@ -1,0 +1,17 @@
+{
+  "config": {
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "task": "counterfactual",
+    "strategy": "single_shot",
+    "dataset": "gsm8k",
+    "max_loops": 5,
+    "temp": 0.0,
+    "n": 1,
+    "seed": 42,
+    "max_tokens": 1200,
+    "verifier_max_tokens": 320
+  },
+  "git_hash": "741844004e8d1e4354f15005c03a189ef25ef88a",
+  "seed": 42,
+  "out_path": "results/counterfactual_single_shot_Qwen2.5-0.5B-Instruct.jsonl"
+}

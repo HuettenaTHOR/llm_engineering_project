@@ -16,8 +16,8 @@ class Strategy(ABC):
               "final_correct": bool | None,
               "gen_fail": bool,
               "iterations": [
-                {"iteration", "candidate", "solver_solve",
-                 "verifier_output", "verifier_says", "verdict"},
+                {"iteration", "candidate", "solver_solve", "verifier_output",
+                 "verifier_says", "verifier_reason", "verdict"},
                 ...
               ],
             }

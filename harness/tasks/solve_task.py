@@ -1,5 +1,5 @@
-from tasks.base_task import BaseTask, to_int
-from answer_extraction import extract_float
+from harness.tasks.base_task import BaseTask, to_int
+from harness.answer_extraction import extract_float
 
 
 class SolveTask(BaseTask):
@@ -20,7 +20,7 @@ class SolveTask(BaseTask):
         """The gold integer parsed from the dataset answer's ``####`` marker, or None."""
         return to_int(extract_float(self.dataset.postprocess_result(example["answer"])))
 
-    def grade(self, example, model_output: str) -> dict:
+    def grade(self, example, model_output: str, model=None) -> dict:
         pred = self.parse_answer(model_output)
         gold = self.gold(example)
         if pred is None:

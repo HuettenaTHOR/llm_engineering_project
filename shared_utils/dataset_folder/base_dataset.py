@@ -4,6 +4,7 @@ class BaseModel(ABC):
 
     def __init__(self, dataset_name: str):
         self.dataset_name = dataset_name
+        print(f"Initializing dataset '{self.dataset_name}'...")
         self.dataset = self.load_dataset()
 
     def load_dataset(self):

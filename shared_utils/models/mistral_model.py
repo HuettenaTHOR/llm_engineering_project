@@ -1,4 +1,4 @@
-from models.base_model import BaseModel
+from shared_utils.models.base_model import BaseModel
 from transformers import Mistral3ForConditionalGeneration, FineGrainedFP8Config, AutoTokenizer
 import torch
 

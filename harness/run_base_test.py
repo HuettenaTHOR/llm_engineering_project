@@ -5,16 +5,16 @@ which persists the complete per-item trace to results/*.jsonl. Accuracy is then 
 reading those JSONL files back -- analysis never re-touches a model (DESIGN 8).
 
 Examples:
-    python run_base_test.py                          # default model, both strategies, n=5
-    python run_base_test.py --model Qwen/Qwen3.5-8B --n 200
-    python run_base_test.py --strategy verifier_loop --max-loops 3
+    python -m harness.run_base_test                          # default model, both strategies, n=5
+    python -m harness.run_base_test --model Qwen/Qwen3.5-8B --n 200
+    python -m harness.run_base_test --strategy verifier_loop --max-loops 3
 """
 import argparse
 import os
 
-from runner import RunConfig, run
-from io_jsonl import read_records
-from models import QWEN35_LADDER
+from harness.runner import RunConfig, run
+from harness.io_jsonl import read_records
+from shared_utils.models import QWEN35_LADDER
 
 # Not pinned: override with --model, or set BENCH_MODEL to test newer models without flags.
 DEFAULT_MODEL = os.environ.get("BENCH_MODEL", "Qwen/Qwen3.5-0.8B")
@@ -39,6 +39,7 @@ def run_test_reasoning_baseline(model_name, dataset_name, n, max_loops, seed, te
         cfg = RunConfig(
             model=model_name, task="solve", strategy=strategy,
             dataset=dataset_name, n=n, max_loops=max_loops, seed=seed, temp=temp,
+            max_tokens=1000, verifier_max_tokens=600
         )
         out_path = run(cfg)
         _report(strategy, out_path)
@@ -72,6 +73,8 @@ def parse_args(argv=None):
 if __name__ == "__main__":
     args = parse_args()
     strategies = STRATEGIES if args.strategy == "both" else (args.strategy,)
+    print(f"Running {args.model} on {args.dataset} with strategies {strategies}, n={args.n}, "
+          f"max_loops={args.max_loops}, seed={args.seed}, temp={args.temp}")
     run_test_reasoning_baseline(
         args.model, args.dataset, args.n, args.max_loops, args.seed, args.temp, strategies,
     )

@@ -1,4 +1,4 @@
-from strategies.base_strategy import Strategy
+from harness.strategies.base_strategy import Strategy
 
 
 class SolverVerifierLoop(Strategy):
@@ -9,13 +9,19 @@ class SolverVerifierLoop(Strategy):
     the solver's reasoning trace -- so it cannot simply agree with the solver (DESIGN 6.1).
     """
 
-    def __init__(self, max_loops: int = 5, max_tokens: int = 1200, temperature: float = 0.0):
+    def __init__(self, max_loops: int = 5, max_tokens: int = 1200,
+                 verifier_max_tokens: int = 320, temperature: float = 0.0):
         self.max_loops = max_loops
         self.max_tokens = max_tokens
+        # The verifier gets a much tighter budget: it should reach a terse verdict, not ramble
+        # until it runs out of tokens (which truncates the verdict and corrupts the loop).
+        self.verifier_max_tokens = verifier_max_tokens
         self.temperature = temperature
 
-    def _infer(self, model, messages):
-        return model.inference(messages, max_tokens=self.max_tokens, temperature=self.temperature)
+    def _infer(self, model, messages, max_tokens=None):
+        return model.inference(
+            messages, max_tokens=max_tokens or self.max_tokens, temperature=self.temperature
+        )
 
     def run(self, task, example, model) -> dict:
         messages = task.build_messages(example, model)  # accumulating solver history
@@ -30,7 +36,7 @@ class SolverVerifierLoop(Strategy):
             # Step-checking verifier: fresh conversation with a static system prompt, shown the
             # problem + the solver's FULL output; it checks the steps and concludes yes/no.
             verifier_messages = task.build_verifier_messages(example, output, model)
-            verifier_output = self._infer(model, verifier_messages)
+            verifier_output = self._infer(model, verifier_messages, self.verifier_max_tokens)
             verdict = task.verifier_verdict(verifier_output)
             verifier_says = verdict["verifier_says"]
             accepted = verdict["accept"]
@@ -41,17 +47,20 @@ class SolverVerifierLoop(Strategy):
                 "solver_solve": claimed,
                 "verifier_output": verifier_output,  # full raw verifier generation
                 "verifier_says": verifier_says,      # True (yes) / False (no) / None
+                "verifier_reason": verdict["reason"],  # the one-line reason fed back to solver
                 "verdict": "accept" if accepted else "reject",
             })
 
             if accepted:
                 break
 
-            # Feedback: hand the solver the verifier's critique and let it revise.
+            # Feedback: hand the solver the verifier's verdict + one-line reason (not its full
+            # reasoning dump) plus its own previous attempt (already in `messages`), and revise.
             feedback = (
-                "A verifier reviewed your solution and judged it INCORRECT.\n\n"
-                "Verifier feedback:\n" + verifier_output +
-                "\n\nReconsider carefully and provide a corrected step-by-step solution."
+                "A verifier reviewed your solution.\n"
+                "Verifier verdict: INCORRECT\n"
+                f"Verifier reason: {verdict['reason']}\n\n"
+                "Fix that specific step and provide a corrected step-by-step solution."
             )
             messages = messages + [
                 {"role": "assistant", "content": output},
@@ -59,10 +68,13 @@ class SolverVerifierLoop(Strategy):
             ]
 
         # Final answer = the last solver attempt (the accepted one, or the last on cap-hit).
-        result = task.grade(example, last_output)
+        result = task.grade(example, last_output, model)
         return {
             "final_pred": result["pred"],
             "final_correct": result["correct"],
             "gen_fail": result["gen_fail"],
+            "target_y_ce": result.get("target_y_ce"),
+            "final_val": result.get("final_val"),
+            "original_correct": result.get("original_correct"),
             "iterations": iterations,
         }

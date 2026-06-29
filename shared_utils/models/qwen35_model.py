@@ -2,7 +2,7 @@ from shared_utils.models.base_model import BaseModel
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 
-class HuggingFaceModel(BaseModel):
+class Qwen35Model(BaseModel):
     def __init__(self, model_name: str, *args, **kwargs):
         super().__init__(model_name, *args, **kwargs)
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -24,9 +24,9 @@ class HuggingFaceModel(BaseModel):
                 f"Original error: {e}"
             ) from e
 
-    def inference(self, conversation: list, max_tokens: int = 1000, temperature: float = 0.0) -> str:
+    def inference(self, conversation: list, max_tokens: int = 2500, temperature: float = 0.0):
         """
-        This method implements the inference logic for the HuggingFace model."""
+        This method implements the inference logic for the Qwen35 model."""
         input_text = self.build_conversation(conversation)
         inputs = self.tokenizer(input_text, return_tensors="pt").to(self.device)
         do_sample = temperature > 0  # temp 0 -> greedy, so runs are reproducible
@@ -41,7 +41,7 @@ class HuggingFaceModel(BaseModel):
 
     def build_conversation(self, conversation: list):
         """
-        This method implements the logic to build a conversation from the input data for the HuggingFace model."""
-        # assume the conversation is already in the correct format for the HuggingFace model
+        This method implements the logic to build a conversation from the input data for the Qwen35 model."""
+        # assume the conversation is already in the correct format for the Qwen35 model
         return self.tokenizer.apply_chat_template(conversation, tokenize=False, add_generation_prompt=True)
         

@@ -9,12 +9,12 @@ from dataclasses import dataclass, asdict
 
 from tqdm import tqdm
 
-from fixed_seeds import set_all_seeds
-from dataset_folder import load_dataset_of_string
-from models import load_model_from_str
-from tasks import SolveTask
-from strategies import SingleShot, SolverVerifierLoop
-from io_jsonl import JsonlWriter, write_meta, git_hash, seen_item_ids
+from harness.fixed_seeds import set_all_seeds
+from shared_utils.dataset_folder import load_dataset_of_string
+from shared_utils.models import load_model_from_str
+from harness.tasks import SolveTask, CounterfactualTask
+from harness.strategies import SingleShot, SolverVerifierLoop
+from harness.io_jsonl import JsonlWriter, write_meta, git_hash, seen_item_ids
 
 
 @dataclass
@@ -29,11 +29,14 @@ class RunConfig:
     n: int = 200
     seed: int = 42
     max_tokens: int = 1200
+    verifier_max_tokens: int = 320
 
 
 def build_task(config: RunConfig, dataset):
     if config.task == "solve":
         return SolveTask(dataset)
+    if config.task == "counterfactual":
+        return CounterfactualTask(dataset, seed=config.seed)
     raise ValueError(f"Unknown task '{config.task}'")
 
 
@@ -42,7 +45,8 @@ def build_strategy(config: RunConfig):
         return SingleShot(max_tokens=config.max_tokens, temperature=config.temp)
     if config.strategy == "verifier_loop":
         return SolverVerifierLoop(
-            max_loops=config.max_loops, max_tokens=config.max_tokens, temperature=config.temp
+            max_loops=config.max_loops, max_tokens=config.max_tokens,
+            verifier_max_tokens=config.verifier_max_tokens, temperature=config.temp
         )
     raise ValueError(f"Unknown strategy '{config.strategy}'")
 
@@ -62,7 +66,7 @@ def build_record(item_id: str, example: dict, task, result: dict) -> dict:
 
     The strategy result already carries the complete per-iteration model trace (every raw
     solver + verifier generation). target_y_ce / final_val are null for the solve task and
-    will be populated once CounterfactualTask (#12) lands."""
+    populated by CounterfactualTask."""
     iterations = result["iterations"]
     original_answer = iterations[0]["solver_solve"] if iterations else None
     return {
@@ -71,6 +75,7 @@ def build_record(item_id: str, example: dict, task, result: dict) -> dict:
         "gold": task.gold(example),
         "solver_original_answer": original_answer,
         "target_y_ce": result.get("target_y_ce"),
+        "original_correct": result.get("original_correct"),
         "iterations": iterations,
         "final_correct": result.get("final_correct"),
         "final_val": result.get("final_val"),
@@ -83,11 +88,11 @@ def run(config: RunConfig, out_path: str = None) -> str:
     """Execute a generation run; returns the output JSONL path."""
     set_all_seeds(config.seed)
     out_path = out_path or default_out_path(config)
-
     dataset = load_dataset_of_string(config.dataset)
+    print(f"Loaded {dataset.get_dataset_size()} items from {config.dataset}; using {config.n} items with seed {config.seed}")
     task = build_task(config, dataset)
-    strategy = build_strategy(config)
 
+    strategy = build_strategy(config)
     subset = dataset.get_random_subset(size=config.n, seed=config.seed)
     examples = [subset[i] for i in range(len(subset))]
 
@@ -100,7 +105,7 @@ def run(config: RunConfig, out_path: str = None) -> str:
 
     done = seen_item_ids(out_path)  # resume: anything already written is skipped
     model = None  # lazy: don't load the (heavy) model if there's nothing left to do
-
+    print("Resuming run; skipping %d items already in %s" % (len(done), out_path))
     desc = f"{config.strategy} | {config.task} | {config.model}"
     with JsonlWriter(out_path) as writer:
         for example in tqdm(examples, desc=desc):
