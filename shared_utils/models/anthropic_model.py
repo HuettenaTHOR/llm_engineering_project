@@ -12,7 +12,7 @@ class AnthropicModel(BaseModel):
         self.api_model_name = MODEL_ALIASES.get(model_name, model_name)
         self.client = anthropic.Anthropic()  # picks up ANTHROPIC_API_KEY from the env
 
-    def inference(self, conversation: list, max_tokens: int = 1000, temperature: float = 0.0):
+    def inference(self, conversation: list, max_tokens: int = 1000, temperature: float = 0.0) -> str:
         """
         This method implements the inference logic for the Anthropic model."""
         # Anthropic takes the system prompt separately, not as a role in the messages list.

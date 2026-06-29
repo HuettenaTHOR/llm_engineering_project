@@ -10,7 +10,7 @@ class GemmaModel(BaseModel):
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.model = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto", dtype="bfloat16")
 
-    def inference(self, conversation: list, max_tokens: int = 1000, temperature: float = 0.0):
+    def inference(self, conversation: list, max_tokens: int = 1000, temperature: float = 0.0) -> str:
         """
         This method implements the inference logic for the HuggingFace model."""
         input_text = self.build_conversation(conversation)

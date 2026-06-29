@@ -13,7 +13,7 @@ class MistralModel(BaseModel):
         )
         self.model = Mistral3ForConditionalGeneration.from_pretrained(model_name, device_map="auto", quantization_config=quantization_config)
 
-    def inference(self, conversation: list, max_tokens: int = 1000, temperature: float = 0.0):
+    def inference(self, conversation: list, max_tokens: int = 1000, temperature: float = 0.0) -> str:
         """
         This method implements the inference logic for the HuggingFace model."""
         input_text = self.build_conversation(conversation)

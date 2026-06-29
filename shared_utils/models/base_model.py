@@ -8,7 +8,7 @@ class BaseModel(ABC):
     def __init__(self, model_name: str, *args, **kwargs):
         self.model_name = model_name
 
-    def inference(self, conversation: list, max_tokens: int = 1000, temperature: float = 0.0):
+    def inference(self, conversation: list, max_tokens: int = 1000, temperature: float = 0.0) -> str:
         """
         This method should include the inference logic for the model. """
         raise NotImplementedError("The inference method must be implemented in the subclass.")
