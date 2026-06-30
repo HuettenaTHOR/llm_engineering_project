@@ -1,0 +1,41 @@
+{
+  "dataset": "gsm8k",
+  "n": 200,
+  "seed": 42,
+  "max_loops": 3,
+  "temp": 0.0,
+  "max_tokens": 1200,
+  "verifier_max_tokens": 320,
+  "runs": [
+    {
+      "name": "qwen2.5-0.5b-self",
+      "solver_model": "Qwen/Qwen2.5-0.5B-Instruct",
+      "verifier_model": "Qwen/Qwen2.5-0.5B-Instruct",
+      "checker_model": "Qwen/Qwen2.5-0.5B-Instruct"
+    },
+    {
+      "name": "qwen2.5-1.5b-self",
+      "solver_model": "Qwen/Qwen2.5-1.5B-Instruct",
+      "verifier_model": "Qwen/Qwen2.5-1.5B-Instruct",
+      "checker_model": "Qwen/Qwen2.5-1.5B-Instruct"
+    },
+    {
+      "name": "qwen2.5-3b-self",
+      "solver_model": "Qwen/Qwen2.5-3B-Instruct",
+      "verifier_model": "Qwen/Qwen2.5-3B-Instruct",
+      "checker_model": "Qwen/Qwen2.5-3B-Instruct"
+    },
+    {
+      "name": "qwen2.5-7b-self",
+      "solver_model": "Qwen/Qwen2.5-7B-Instruct",
+      "verifier_model": "Qwen/Qwen2.5-7B-Instruct",
+      "checker_model": "Qwen/Qwen2.5-7B-Instruct"
+    },
+    {
+      "name": "cross-0.5solver-7verifier",
+      "solver_model": "Qwen/Qwen2.5-0.5B-Instruct",
+      "verifier_model": "Qwen/Qwen2.5-7B-Instruct",
+      "checker_model": "Qwen/Qwen2.5-0.5B-Instruct"
+    }
+  ]
+}

@@ -5,7 +5,8 @@ loses a completed step; on restart it groups the existing lines by item and cont
 from where it stopped. Three models are configured independently (solver / verifier / checker);
 identical ids are loaded once and shared (16 GB VRAM budget).
 """
-from dataclasses import dataclass, asdict
+import sys
+from dataclasses import asdict
 
 from tqdm import tqdm
 
@@ -14,32 +15,11 @@ from harness.io_jsonl import JsonlWriter, write_meta, git_hash, read_records
 from shared_utils.models import load_model_from_str
 from shared_utils.dataset_folder import load_dataset_of_string
 from code_seb.grading import make_item_id
+from code_seb.cf_config import CFRunConfig, default_out_path, load_configs
 from code_seb.counterfactual_task import CounterfactualTask
 from code_seb.counterfactual_strategy import CounterfactualStrategy
 
-
-@dataclass
-class CFRunConfig:
-    """One counterfactual-loop run. Each role's model is set independently."""
-    solver_model: str
-    verifier_model: str
-    checker_model: str
-    dataset: str = "gsm8k"
-    n: int = 200
-    seed: int = 42
-    max_loops: int = 3
-    temp: float = 0.0
-    max_tokens: int = 1200
-    verifier_max_tokens: int = 320
-
-
-def _short(model: str) -> str:
-    return model.split("/")[-1]
-
-
-def default_out_path(config: CFRunConfig) -> str:
-    return (f"results/counterfactual_loop_{_short(config.solver_model)}"
-            f"_v-{_short(config.verifier_model)}_c-{_short(config.checker_model)}.jsonl")
+DEFAULT_CONFIG = "counterfactual_config.json"
 
 
 def _steps_by_item(path: str) -> dict:
@@ -97,9 +77,20 @@ def run(config: CFRunConfig, out_path: str = None) -> str:
     return out_path
 
 
+def run_from_config(config_path: str = DEFAULT_CONFIG) -> list[str]:
+    """Run every model combination declared in a counterfactual_config.json. Each run is
+    independently resumable, so re-invoking after an abort continues where it stopped."""
+    configs = load_configs(config_path)
+    print(f"Running {len(configs)} combination(s) from {config_path}")
+    out_paths = []
+    for i, cfg in enumerate(configs, 1):
+        print(f"\n=== [{i}/{len(configs)}] {cfg.name or cfg.solver_model} ===")
+        out_paths.append(run(cfg))
+    return out_paths
+
+
 if __name__ == "__main__":
-    # Smoke run for the loop: 2 items, smallest model in all three roles (loaded once).
-    m = "Qwen/Qwen2.5-0.5B-Instruct"
-    cfg = CFRunConfig(solver_model=m, verifier_model=m, checker_model=m, n=2)
-    path = run(cfg)
-    print(f"Wrote run to {path}")
+    # `python -m code_seb.counterfactual_runner [config.json]` runs the whole matrix.
+    config_path = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_CONFIG
+    for path in run_from_config(config_path):
+        print(f"Wrote run to {path}")
