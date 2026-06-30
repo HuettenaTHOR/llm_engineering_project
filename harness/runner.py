@@ -12,7 +12,7 @@ from tqdm import tqdm
 from harness.fixed_seeds import set_all_seeds
 from shared_utils.dataset_folder import load_dataset_of_string
 from shared_utils.models import load_model_from_str
-from harness.tasks import SolveTask, CounterfactualTask
+from harness.tasks import SolveTask
 from harness.strategies import SingleShot, SolverVerifierLoop
 from harness.io_jsonl import JsonlWriter, write_meta, git_hash, seen_item_ids
 
@@ -36,7 +36,10 @@ def build_task(config: RunConfig, dataset):
     if config.task == "solve":
         return SolveTask(dataset)
     if config.task == "counterfactual":
-        return CounterfactualTask(dataset, seed=config.seed)
+        raise ValueError(
+            "The counterfactual task moved to code_seb; run it via "
+            "code_seb.counterfactual_runner (CFRunConfig), not this runner."
+        )
     raise ValueError(f"Unknown task '{config.task}'")
 
 
