@@ -5,10 +5,21 @@ import torch
 class Qwen25Model(BaseModel):
     def __init__(self, model_name: str, *args, **kwargs):
         super().__init__(model_name, *args, **kwargs)
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        print(f"Using device: {self.device}")
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
-        self.model = AutoModelForCausalLM.from_pretrained(model_name, device_map="auto", dtype="bfloat16")
+        if torch.cuda.is_available():
+            # GPU box: shard with accelerate; inputs go to cuda (matches device_map="auto").
+            self.device = torch.device("cuda")
+            self.model = AutoModelForCausalLM.from_pretrained(
+                model_name, device_map="auto", dtype="bfloat16"
+            )
+        else:
+            # No CUDA (e.g. a Mac): load fully on CPU in fp32. Avoids the device_map="auto"
+            # MPS placement mismatch and MPS op-coverage gaps; fine for small smoke runs.
+            self.device = torch.device("cpu")
+            self.model = AutoModelForCausalLM.from_pretrained(
+                model_name, dtype=torch.float32
+            ).to(self.device)
+        print(f"Using device: {self.device}")
 
     def inference(self, conversation: list, max_tokens: int = 1000, temperature: float = 0.0) -> str:
         """

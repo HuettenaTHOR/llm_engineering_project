@@ -1,0 +1,40 @@
+[
+  {
+    "name": "smoke-0.5b-self",
+    "out_path": "results/counterfactual_loop_smoke-0.5b-self.jsonl",
+    "exists": true,
+    "has_meta": true,
+    "n_items": 2,
+    "n_finished": 2,
+    "n_incomplete": 0,
+    "n_gen_fail": 0,
+    "expected_n": 2,
+    "complete": true,
+    "val_rate": 0.0,
+    "val_ci": [
+      0.0,
+      0.6576280471103807
+    ],
+    "gen_rate": 1.0,
+    "gen_ci": [
+      0.34237195288961925,
+      1.0
+    ],
+    "original_acc": 0.5,
+    "accept_rate": 1.0,
+    "accept_ci": [
+      0.34237195288961925,
+      1.0
+    ],
+    "verifier_val_agreement": 0.0,
+    "mean_iters_to_accept": 1.5,
+    "loop_depth_hist": {
+      "1": 1,
+      "2": 1
+    },
+    "val_at_k": {
+      "1": 0.0,
+      "2": 0.0
+    }
+  }
+]
