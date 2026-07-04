@@ -3,15 +3,20 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 
 class Qwen25Model(BaseModel):
-    def __init__(self, model_name: str, *args, **kwargs):
+    def __init__(self, model_name: str, *args, quantize: str = None, **kwargs):
         super().__init__(model_name, *args, **kwargs)
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         if torch.cuda.is_available():
             # GPU box: shard with accelerate; inputs go to cuda (matches device_map="auto").
             self.device = torch.device("cuda")
-            self.model = AutoModelForCausalLM.from_pretrained(
-                model_name, device_map="auto", dtype="bfloat16"
-            )
+            load_kwargs = {"device_map": "auto"}
+            if quantize == "8bit":
+                # 8-bit lets a 7B fit a 16GB card (bf16 ~15GB overflows it); near-lossless at greedy decode.
+                from transformers import BitsAndBytesConfig
+                load_kwargs["quantization_config"] = BitsAndBytesConfig(load_in_8bit=True)
+            else:
+                load_kwargs["dtype"] = "bfloat16"
+            self.model = AutoModelForCausalLM.from_pretrained(model_name, **load_kwargs)
         else:
             # No CUDA (e.g. a Mac): load fully on CPU in fp32. Avoids the device_map="auto"
             # MPS placement mismatch and MPS op-coverage gaps; fine for small smoke runs.
@@ -41,9 +46,3 @@ class Qwen25Model(BaseModel):
         This method implements the logic to build a conversation from the input data for the HuggingFace model."""
         # assume the conversation is already in the correct format for the HuggingFace model
         return self.tokenizer.apply_chat_template(conversation, tokenize=False, add_generation_prompt=True)
-      
-
-    def build_conversation_from_system_prompt(self, system_prompt: str, user_input: str = None):
-        return [
-            {"role": "system", "content": system_prompt + "Problem: " + user_input},
-        ]

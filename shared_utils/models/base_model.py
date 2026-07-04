@@ -19,10 +19,7 @@ class BaseModel(ABC):
         raise NotImplementedError("The build_conversation method must be implemented in the subclass.")
     
     def build_conversation_from_system_prompt(self, system_prompt: str, user_input: str = None):
-        
-        return [
-            {"role": "system", "content": system_prompt},
-            {"role": "user", "content": user_input} if user_input is not None else None
-        ]
-        
-        
+        messages = [{"role": "system", "content": system_prompt}]
+        if user_input is not None:
+            messages.append({"role": "user", "content": user_input})
+        return messages

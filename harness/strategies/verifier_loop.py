@@ -5,18 +5,24 @@ class SolverVerifierLoop(Strategy):
     """Agentic loop: a solver proposes a candidate, an independent verifier re-solves and
     accepts or rejects it. On rejection the solver gets Tier-1 numeric feedback and retries.
 
-    The verifier is the *same model* but sees only the question + the claimed answer -- never
-    the solver's reasoning trace -- so it cannot simply agree with the solver (DESIGN 6.1).
+    The verifier may be the same model or a distinct (stronger) ``verifier_model``; either way it
+    step-checks the solver's solution and concludes yes/no. A same-model verifier shares the
+    solver's blind spots, so an independent verifier is what lets the loop actually catch errors.
     """
 
     def __init__(self, max_loops: int = 5, max_tokens: int = 1200,
-                 verifier_max_tokens: int = 320, temperature: float = 0.0):
+                 verifier_max_tokens: int = 320, temperature: float = 0.0,
+                 verifier_model=None):
         self.max_loops = max_loops
         self.max_tokens = max_tokens
         # The verifier gets a much tighter budget: it should reach a terse verdict, not ramble
         # until it runs out of tokens (which truncates the verdict and corrupts the loop).
         self.verifier_max_tokens = verifier_max_tokens
         self.temperature = temperature
+        # Optional distinct verifier model. A same-model verifier shares the solver's blind spots
+        # (and at temp 0 just reproduces its reasoning), so a stronger, independent verifier is what
+        # lets the loop actually catch errors. None -> verify with the solver model.
+        self.verifier_model = verifier_model
 
     def _infer(self, model, messages, max_tokens=None):
         return model.inference(
@@ -24,19 +30,26 @@ class SolverVerifierLoop(Strategy):
         )
 
     def run(self, task, example, model) -> dict:
+        verifier_model = self.verifier_model or model
         messages = task.build_messages(example, model)  # accumulating solver history
         iterations = []
         last_output = None
+        solver_outputs = []    # every solver candidate so far (user turns for the verifier)
+        verifier_outputs = []  # every verifier verdict so far (assistant turns for the verifier)
 
         for i in range(self.max_loops):
             output = self._infer(model, messages)
             last_output = output
             claimed = task.parse_answer(output)
+            solver_outputs.append(output)
 
-            # Step-checking verifier: fresh conversation with a static system prompt, shown the
-            # problem + the solver's FULL output; it checks the steps and concludes yes/no.
-            verifier_messages = task.build_verifier_messages(example, output, model)
-            verifier_output = self._infer(model, verifier_messages, self.verifier_max_tokens)
+            # Step-checking verifier: a static system prompt with the question embedded, then the
+            # accumulating solver/verifier history ending on the latest solver answer to judge.
+            verifier_messages = task.build_verifier_messages(
+                example, solver_outputs, verifier_outputs, verifier_model
+            )
+            verifier_output = self._infer(verifier_model, verifier_messages, self.verifier_max_tokens)
+            verifier_outputs.append(verifier_output)
             verdict = task.verifier_verdict(verifier_output)
             verifier_says = verdict["verifier_says"]
             accepted = verdict["accept"]

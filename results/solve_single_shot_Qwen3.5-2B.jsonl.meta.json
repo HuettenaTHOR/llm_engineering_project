@@ -1,0 +1,20 @@
+{
+  "config": {
+    "model": "Qwen/Qwen3.5-2B",
+    "task": "solve",
+    "strategy": "single_shot",
+    "dataset": "gsm8k",
+    "max_loops": 5,
+    "temp": 0.0,
+    "n": 100,
+    "seed": 42,
+    "max_tokens": 2560,
+    "verifier_max_tokens": 4096,
+    "verifier_model": "Qwen/Qwen3.5-4B",
+    "verifier_quantize": null,
+    "verifier_no_thinking": false
+  },
+  "git_hash": "90eab599d0ca07e3f294537dd8982729794a5590",
+  "seed": 42,
+  "out_path": "results/solve_single_shot_Qwen3.5-2B.jsonl"
+}

@@ -26,15 +26,16 @@ MISTRAL_MODELS = (
 
 GEMMA_MODELS = (
     "google/gemma-4-E2B-it",
-    "google/gemma-4-E2B-it",
+    "google/gemma-4-E4B-it",
 
 )
 
 ANTHROPIC_MODELS = ("claude-haiku-4-5",)
 
 
-def load_model_from_str(model_name: str):
-    """ loads the model based on the provided model name. """
+def load_model_from_str(model_name: str, quantize: str = None):
+    """ loads the model based on the provided model name. ``quantize`` (e.g. "8bit") lets a large
+    model (7B) fit a 16GB card; currently honored by the Qwen2.5 loader. """
 
     if model_name in ANTHROPIC_MODELS:
         from shared_utils.models.anthropic_model import AnthropicModel
@@ -45,13 +46,13 @@ def load_model_from_str(model_name: str):
         return Qwen35Model(model_name)
     elif model_name in QWEN25_LADDER:
         from shared_utils.models.qwen25_model import Qwen25Model
-        return Qwen25Model(model_name)
+        return Qwen25Model(model_name, quantize=quantize)
     elif model_name in MISTRAL_MODELS:
         from shared_utils.models.mistral_model import MistralModel
         return MistralModel(model_name)
     elif model_name in GEMMA_MODELS:
         from shared_utils.models.gemma_model import GemmaModel
-        return GemmaModel(model_name)
+        return GemmaModel(model_name, quantize=quantize)
     else:
         # Treat anything else as a HuggingFace repo id (Qwen ladder or any model to try out).
         from shared_utils.models.huggingface_model import HuggingFaceModel

@@ -3,6 +3,10 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 
 class Qwen35Model(BaseModel):
+    # Qwen3.5 is a thinking model. Set this False on an instance (e.g. a verifier) to suppress the
+    # <think> block -> concise, fast, and no truncating-before-the-verdict on hard problems.
+    enable_thinking = True
+
     def __init__(self, model_name: str, *args, **kwargs):
         super().__init__(model_name, *args, **kwargs)
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -43,5 +47,8 @@ class Qwen35Model(BaseModel):
         """
         This method implements the logic to build a conversation from the input data for the Qwen35 model."""
         # assume the conversation is already in the correct format for the Qwen35 model
-        return self.tokenizer.apply_chat_template(conversation, tokenize=False, add_generation_prompt=True)
+        return self.tokenizer.apply_chat_template(
+            conversation, tokenize=False, add_generation_prompt=True,
+            enable_thinking=self.enable_thinking,
+        )
         

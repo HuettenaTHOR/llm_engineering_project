@@ -30,6 +30,12 @@ class RunConfig:
     seed: int = 42
     max_tokens: int = 1200
     verifier_max_tokens: int = 320
+    quantize: str = None  # e.g. "8bit" to fit a large solver (e.g. Gemma ~16GB) on a 16GB card
+    # Independent verifier model for the loop (None -> verify with the solver model). A same-model
+    # verifier rubber-stamps the solver, so error-catching needs a distinct (stronger) model here.
+    verifier_model: str = None
+    verifier_quantize: str = None  # e.g. "8bit" to fit a 7B verifier alongside the solver on 16GB
+    verifier_no_thinking: bool = False  # suppress the verifier's <think> block (Qwen3.5) -> concise/fast
 
 
 def build_task(config: RunConfig, dataset):
@@ -37,8 +43,9 @@ def build_task(config: RunConfig, dataset):
         return SolveTask(dataset)
     if config.task == "counterfactual":
         raise ValueError(
-            "The counterfactual task moved to code_seb; run it via "
-            "code_seb.counterfactual_runner (CFRunConfig), not this runner."
+            "The counterfactual task uses a dedicated step-streaming, three-role runner; run it "
+            "via harness.counterfactual_runner (CFRunConfig / counterfactual_config.json), "
+            "not this per-item solve runner."
         )
     raise ValueError(f"Unknown task '{config.task}'")
 
@@ -61,7 +68,12 @@ def make_item_id(example: dict) -> str:
 
 def default_out_path(config: RunConfig) -> str:
     model_short = config.model.split("/")[-1]
-    return f"results/{config.task}_{config.strategy}_{model_short}.jsonl"
+    # Tag the loop's file with its verifier so an asymmetric run doesn't collide with / look like
+    # a same-model run (and stays comparable to the single_shot file for the same solver).
+    suffix = ""
+    if config.strategy == "verifier_loop" and config.verifier_model:
+        suffix = f"_vfy-{config.verifier_model.split('/')[-1]}"
+    return f"results/{config.task}_{config.strategy}_{model_short}{suffix}.jsonl"
 
 
 def build_record(item_id: str, example: dict, task, result: dict) -> dict:
@@ -85,6 +97,19 @@ def build_record(item_id: str, example: dict, task, result: dict) -> dict:
         "gen_fail": result["gen_fail"],
         "human_audit": None,
     }
+
+
+def _free_cuda_cache():
+    """Release the CUDA caching allocator's free blocks after each item. Without this the loop's
+    growing per-item KV caches fragment the allocator and creep GPU usage up to the limit over a
+    handful of items, getting the process OOM-killed mid-run (observed: ~12GB -> 16GB then killed)."""
+    try:
+        import gc, torch
+        gc.collect()
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+    except Exception:
+        pass
 
 
 def run(config: RunConfig, out_path: str = None) -> str:
@@ -116,9 +141,19 @@ def run(config: RunConfig, out_path: str = None) -> str:
             if item_id in done:
                 continue
             if model is None:
-                model = load_model_from_str(config.model)
+                model = load_model_from_str(config.model, quantize=config.quantize)
+                # Asymmetric verifier: load the (distinct) verifier model once and hand it to the
+                # loop. Reuse the solver object if the verifier id is the same model.
+                if config.verifier_model and isinstance(strategy, SolverVerifierLoop):
+                    strategy.verifier_model = (
+                        model if config.verifier_model == config.model
+                        else load_model_from_str(config.verifier_model, quantize=config.verifier_quantize)
+                    )
+                    if config.verifier_no_thinking:
+                        strategy.verifier_model.enable_thinking = False
             result = strategy.run(task, example, model)
             writer.append(build_record(item_id, example, task, result))
+            _free_cuda_cache()  # keep GPU usage flat across items (else it creeps -> OOM-kill)
 
     return out_path
 

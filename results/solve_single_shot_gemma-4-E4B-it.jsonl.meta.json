@@ -1,0 +1,20 @@
+{
+  "config": {
+    "model": "google/gemma-4-E4B-it",
+    "task": "solve",
+    "strategy": "single_shot",
+    "dataset": "gsm8k",
+    "max_loops": 5,
+    "temp": 1.0,
+    "n": 2,
+    "seed": 42,
+    "max_tokens": 4096,
+    "verifier_max_tokens": 4096,
+    "verifier_model": "google/gemma-4-E4B-it",
+    "verifier_quantize": null,
+    "verifier_no_thinking": false
+  },
+  "git_hash": "90eab599d0ca07e3f294537dd8982729794a5590",
+  "seed": 42,
+  "out_path": "results/solve_single_shot_gemma-4-E4B-it.jsonl"
+}

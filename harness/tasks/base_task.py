@@ -18,10 +18,12 @@ def parse_verdict(text):
     one wins). Returns None when there is no such line -- i.e. the verifier rambled or got
     truncated before committing. We deliberately do NOT scrape a loose 'yes'/'no' from the
     prose: a stray 'no' mid-reasoning would falsely reject a correct answer (verifier_verdict
-    treats None as accept)."""
+    treats None as accept). The negative-lookahead guard skips the verifier echoing the instruction
+    literal ``Verdict: YES or NO`` -- without it a truncated verifier that printed the template but
+    not its real verdict would falsely parse the 'YES' out of 'YES or NO' and accept a wrong answer."""
     if not text:
         return None
-    matches = re.findall(r"verdict\s*:?\s*\**\s*(yes|no)\b", text, flags=re.IGNORECASE)
+    matches = re.findall(r"verdict\s*:?\s*\**\s*(yes|no)\b(?!\s+or\b)", text, flags=re.IGNORECASE)
     return matches[-1].lower() == "yes" if matches else None
 
 
@@ -46,18 +48,30 @@ class BaseTask(ABC):
     def build_messages(self, example, model) -> list:
         """The solver's conversation for ``example`` (system prompt + question)."""
 
-    def build_verifier_messages(self, example, solver_output, model) -> list:
-        """The verifier's conversation. Uses a STATIC, dataset-independent system prompt
-        (``VERIFIER_SYSTEM_PROMPT``) and shows it the problem + the solver's full output, so it
-        can check the steps and conclude with yes/no. Subclasses may override for richer tasks."""
-        verifier_input = (
-            f"Problem:\n{example['question']}\n\n"
-            f"Solver's solution:\n{solver_output}\n\n"
-            f"Check it and respond in the required two-line format (Reason / Verdict)."
-        )
-        return model.build_conversation_from_system_prompt(
-            VERIFIER_SYSTEM_PROMPT, user_input=verifier_input
-        )
+    def build_verifier_messages(self, example, solver_outputs, verifier_outputs, model) -> list:
+        """The verifier's accumulating conversation across loop iterations.
+
+        The question is embedded in the STATIC, dataset-independent system prompt
+        (``VERIFIER_SYSTEM_PROMPT``). Each solver attempt is an explicitly-framed user turn ("here
+        is a solution to check") and the verifier's own past verdicts are the assistant turns,
+        ending on the latest solver answer (the one to judge). ``solver_outputs`` has one more
+        entry than ``verifier_outputs`` (the current candidate, not yet judged).
+
+        The conversation already alternates user/assistant correctly and ends on a user turn, so
+        no seed turn is needed. We deliberately do NOT seed the bare question as a leading
+        assistant turn: an assistant "uttering" the question is nonsensical to the model and it
+        burns its (short) budget puzzling over the structure instead of checking the math.
+        Subclasses may override for richer tasks."""
+        system = f"{VERIFIER_SYSTEM_PROMPT}\n\nProblem:\n{example['question']}"
+        messages = [{"role": "system", "content": system}]
+        for i, solver_output in enumerate(solver_outputs):
+            messages.append({"role": "user", "content": (
+                f"Solver's solution:\n{solver_output}\n\n"
+                "Check it and respond in the required two-line format (Reason / Verdict)."
+            )})
+            if i < len(verifier_outputs):
+                messages.append({"role": "assistant", "content": verifier_outputs[i]})
+        return messages
 
     def parse_answer(self, model_output: str):
         """Extract the candidate integer the model claims, or None (gen-fail)."""
