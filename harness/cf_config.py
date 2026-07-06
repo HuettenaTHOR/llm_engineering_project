@@ -19,9 +19,18 @@ class CFRunConfig:
     n: int = 200
     seed: int = 42
     max_loops: int = 3
-    temp: float = 0.0
-    max_tokens: int = 1200
-    verifier_max_tokens: int = 320
+    temp: float | None = None  # None -> use each model's shipped generation_config defaults
+    # High ceilings so verbose / thinking models never truncate before the `#### <n>` (solver)
+    # or the `Verdict:` line (verifier). Greedy still stops at EOS, so short answers stay short.
+    max_tokens: int = 10000
+    verifier_max_tokens: int = 10000
+    # When the verifier's verdict can't be parsed (rambled / truncated), accept it (early-stop)
+    # rather than reject. The checker independently grades the final CF, so over-accepting here is
+    # non-destructive. Set False to make an unparseable verdict keep the loop going.
+    verifier_accept_on_unparsed: bool = True
+    # False (default) -> blind judge: it sees only the target + candidate revised problem and
+    # re-solves independently. True -> trace-aware judge: it also sees the solver's original solve.
+    verifier_sees_solver_output: bool = False
 
 
 def _short(model: str) -> str:

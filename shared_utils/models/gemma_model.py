@@ -23,18 +23,20 @@ class GemmaModel(BaseModel):
             load_kwargs["dtype"] = "bfloat16"
         self.model = AutoModelForCausalLM.from_pretrained(model_name, **load_kwargs)
 
-    def inference(self, conversation: list, max_tokens: int = 1000, temperature: float = 0.0) -> str:
+    def inference(self, conversation: list, max_tokens: int = 1000, temperature: float | None = None) -> str:
         """
         This method implements the inference logic for the HuggingFace model."""
         input_text = self.build_conversation(conversation)
         inputs = self.tokenizer(input_text, return_tensors="pt").to(self.device)
-        do_sample = temperature > 0  # temp 0 -> greedy, so runs are reproducible
-        gen_kwargs = {"max_new_tokens": max_tokens, "do_sample": do_sample}
-        if do_sample:
-            gen_kwargs["temperature"] = temperature
-            gen_kwargs["top_p"] = 0.95  # based on transformers docs
-            gen_kwargs["top_k"] = 64    # based on transformers docs
-            
+        gen_kwargs = {"max_new_tokens": max_tokens}
+        if temperature is not None:  # explicit float -> temp 0 greedy (reproducible), else sample
+            gen_kwargs["do_sample"] = temperature > 0
+            if temperature > 0:
+                gen_kwargs["temperature"] = temperature
+                gen_kwargs["top_p"] = 0.95  # based on transformers docs
+                gen_kwargs["top_k"] = 64    # based on transformers docs
+        # temperature is None -> no overrides; generation_config.json decides do_sample/temp/top_p/top_k
+
         with torch.no_grad():
             outputs = self.model.generate(**inputs, **gen_kwargs)
         return self.tokenizer.decode(outputs[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True)

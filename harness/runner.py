@@ -5,11 +5,13 @@ per-item trace to a JSONL file as each item completes. Resumable: items already 
 the output file are skipped on restart. No metric is computed here -- that is #8's job.
 """
 import hashlib
-from dataclasses import dataclass, asdict
+import json
+import sys
+from dataclasses import dataclass, asdict, fields
 
 from tqdm import tqdm
 
-from harness.fixed_seeds import set_all_seeds
+from harness.fixed_seeds import set_all_seeds, set_item_seed
 from shared_utils.dataset_folder import load_dataset_of_string
 from shared_utils.models import load_model_from_str
 from harness.tasks import SolveTask
@@ -25,11 +27,16 @@ class RunConfig:
     strategy: str = "single_shot"  # -> build_strategy
     dataset: str = "gsm8k"
     max_loops: int = 5
-    temp: float = 0.0
+    temp: float | None = None  # None -> use each model's shipped generation_config defaults
     n: int = 200
     seed: int = 42
-    max_tokens: int = 1200
-    verifier_max_tokens: int = 320
+    # High ceilings so verbose / thinking models never truncate before the `#### <n>` (solver) or
+    # the `Verdict:` line (verifier). Greedy still stops at EOS, so short answers stay short.
+    max_tokens: int = 10000
+    verifier_max_tokens: int = 10000
+    # When the verifier's verdict can't be parsed (rambled / truncated), accept it (early-stop)
+    # rather than reject -- avoids overturning a possibly-correct answer on parser noise.
+    verifier_accept_on_unparsed: bool = True
     quantize: str = None  # e.g. "8bit" to fit a large solver (e.g. Gemma ~16GB) on a 16GB card
     # Independent verifier model for the loop (None -> verify with the solver model). A same-model
     # verifier rubber-stamps the solver, so error-catching needs a distinct (stronger) model here.
@@ -56,7 +63,8 @@ def build_strategy(config: RunConfig):
     if config.strategy == "verifier_loop":
         return SolverVerifierLoop(
             max_loops=config.max_loops, max_tokens=config.max_tokens,
-            verifier_max_tokens=config.verifier_max_tokens, temperature=config.temp
+            verifier_max_tokens=config.verifier_max_tokens, temperature=config.temp,
+            verifier_accept_on_unparsed=config.verifier_accept_on_unparsed,
         )
     raise ValueError(f"Unknown strategy '{config.strategy}'")
 
@@ -68,11 +76,13 @@ def make_item_id(example: dict) -> str:
 
 def default_out_path(config: RunConfig) -> str:
     model_short = config.model.split("/")[-1]
-    # Tag the loop's file with its verifier so an asymmetric run doesn't collide with / look like
-    # a same-model run (and stays comparable to the single_shot file for the same solver).
+    # Tag the loop's file with its verifier and max_loops so an asymmetric run, or a different
+    # loop depth on the same self-verifier model, never collides with / resumes into another run.
     suffix = ""
-    if config.strategy == "verifier_loop" and config.verifier_model:
-        suffix = f"_vfy-{config.verifier_model.split('/')[-1]}"
+    if config.strategy == "verifier_loop":
+        if config.verifier_model:
+            suffix += f"_vfy-{config.verifier_model.split('/')[-1]}"
+        suffix += f"_loops{config.max_loops}"
     return f"results/{config.task}_{config.strategy}_{model_short}{suffix}.jsonl"
 
 
@@ -140,6 +150,7 @@ def run(config: RunConfig, out_path: str = None) -> str:
             item_id = make_item_id(example)
             if item_id in done:
                 continue
+            set_item_seed(config.seed, item_id)  # per-item RNG: item i starts identically everywhere
             if model is None:
                 model = load_model_from_str(config.model, quantize=config.quantize)
                 # Asymmetric verifier: load the (distinct) verifier model once and hand it to the
@@ -158,8 +169,42 @@ def run(config: RunConfig, out_path: str = None) -> str:
     return out_path
 
 
+DEFAULT_CONFIG = "benchmark_config.json"
+
+
+def load_configs(path: str) -> list[RunConfig]:
+    """Parse a benchmark_config.json into one RunConfig per ``runs[]`` entry. Top-level keys are
+    shared defaults; each run entry overrides them. Unknown keys are ignored."""
+    with open(path, encoding="utf-8") as f:
+        spec = json.load(f)
+    defaults = {k: v for k, v in spec.items() if k != "runs"}
+    allowed = {f.name for f in fields(RunConfig)}
+    configs = []
+    for entry in spec.get("runs", []):
+        merged = {**defaults, **entry}
+        configs.append(RunConfig(**{k: v for k, v in merged.items() if k in allowed}))
+    return configs
+
+
+def run_from_config(config_path: str = DEFAULT_CONFIG) -> list[str]:
+    """Run every model/strategy combination declared in a benchmark_config.json. Each run is
+    independently resumable, so re-invoking after an abort continues where it stopped."""
+    configs = load_configs(config_path)
+    print(f"Running {len(configs)} combination(s) from {config_path}")
+    out_paths = []
+    for i, cfg in enumerate(configs, 1):
+        print(f"\n=== [{i}/{len(configs)}] {cfg.model} | {cfg.strategy} (max_loops={cfg.max_loops}) ===")
+        out_paths.append(run(cfg))
+    return out_paths
+
+
 if __name__ == "__main__":
-    # Smoke run for #7: 5 items, smallest model, single-shot solve.
-    cfg = RunConfig(model="Qwen/Qwen2.5-0.5B-Instruct", task="solve", strategy="single_shot", n=5)
-    path = run(cfg)
-    print(f"Wrote run to {path}")
+    if len(sys.argv) > 1:
+        # `python -m harness.runner benchmark_config.json` runs the whole matrix.
+        for path in run_from_config(sys.argv[1]):
+            print(f"Wrote run to {path}")
+    else:
+        # Smoke run for #7: 5 items, smallest model, single-shot solve.
+        cfg = RunConfig(model="Qwen/Qwen2.5-0.5B-Instruct", task="solve", strategy="single_shot", n=5)
+        path = run(cfg)
+        print(f"Wrote run to {path}")

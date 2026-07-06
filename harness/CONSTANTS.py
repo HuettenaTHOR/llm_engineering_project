@@ -30,7 +30,7 @@ Verdict: YES or NO"""
 # Solver revise instruction (CF #1). Appended as a user turn onto the solver's original-solve thread.
 COUNTERFACTUAL_REVISE_TEMPLATE=(
     "Now, revise the math problem so your final answer to the revised problem becomes "
-    "{target}. Share the revised problem."
+    "{target}. Share the revised problem. Besides thinking, only output the revised problem. Start your output with 'Revised problem:'."
 )
 
 # Rejection feedback fed back to the solver (CF #2+). {flaw} is the verifier's one-line Reason.

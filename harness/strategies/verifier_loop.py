@@ -10,19 +10,23 @@ class SolverVerifierLoop(Strategy):
     solver's blind spots, so an independent verifier is what lets the loop actually catch errors.
     """
 
-    def __init__(self, max_loops: int = 5, max_tokens: int = 1200,
-                 verifier_max_tokens: int = 320, temperature: float = 0.0,
-                 verifier_model=None):
+    def __init__(self, max_loops: int = 5, max_tokens: int = 10000,
+                 verifier_max_tokens: int = 10000, temperature: float | None = None,
+                 verifier_model=None, verifier_accept_on_unparsed: bool = True):
         self.max_loops = max_loops
         self.max_tokens = max_tokens
-        # The verifier gets a much tighter budget: it should reach a terse verdict, not ramble
-        # until it runs out of tokens (which truncates the verdict and corrupts the loop).
+        # High ceiling so a verbose verifier still reaches its `Verdict:` line instead of being
+        # truncated mid-reasoning (a truncated verdict is unparseable -> handled below). Greedy
+        # stops at EOS, so a terse verifier still stops early.
         self.verifier_max_tokens = verifier_max_tokens
         self.temperature = temperature
         # Optional distinct verifier model. A same-model verifier shares the solver's blind spots
         # (and at temp 0 just reproduces its reasoning), so a stronger, independent verifier is what
         # lets the loop actually catch errors. None -> verify with the solver model.
         self.verifier_model = verifier_model
+        # How to treat an unparseable verdict (None): True -> accept (lean-yes, never overturn a
+        # possibly-correct answer on parser noise); False -> reject and keep looping.
+        self.verifier_accept_on_unparsed = verifier_accept_on_unparsed
 
     def _infer(self, model, messages, max_tokens=None):
         return model.inference(
@@ -50,7 +54,7 @@ class SolverVerifierLoop(Strategy):
             )
             verifier_output = self._infer(verifier_model, verifier_messages, self.verifier_max_tokens)
             verifier_outputs.append(verifier_output)
-            verdict = task.verifier_verdict(verifier_output)
+            verdict = task.verifier_verdict(verifier_output, self.verifier_accept_on_unparsed)
             verifier_says = verdict["verifier_says"]
             accepted = verdict["accept"]
 

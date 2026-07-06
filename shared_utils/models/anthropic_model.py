@@ -12,17 +12,19 @@ class AnthropicModel(BaseModel):
         self.api_model_name = MODEL_ALIASES.get(model_name, model_name)
         self.client = anthropic.Anthropic()  # picks up ANTHROPIC_API_KEY from the env
 
-    def inference(self, conversation: list, max_tokens: int = 1000, temperature: float = 0.0) -> str:
+    def inference(self, conversation: list, max_tokens: int = 1000, temperature: float | None = None) -> str:
         """
         This method implements the inference logic for the Anthropic model."""
         # Anthropic takes the system prompt separately, not as a role in the messages list.
         system, messages = self.split_system(conversation)
+        # temperature=None -> omit it so the SDK default applies (mirrors the local-model behaviour).
+        temp_kwargs = {} if temperature is None else {"temperature": temperature}
         response = self.client.messages.create(
             model=self.api_model_name,
             max_tokens=max_tokens,
-            temperature=temperature,
             system=system,
             messages=messages,
+            **temp_kwargs,
         )
         return next(block.text for block in response.content if block.type == "text")
 

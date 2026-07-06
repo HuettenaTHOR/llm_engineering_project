@@ -14,7 +14,7 @@ from dataclasses import asdict
 
 from tqdm import tqdm
 
-from harness.fixed_seeds import set_all_seeds
+from harness.fixed_seeds import set_all_seeds, set_item_seed
 from harness.io_jsonl import JsonlWriter, write_meta, git_hash, read_records
 from harness.runner import make_item_id
 from harness.cf_config import CFRunConfig, default_out_path, load_configs
@@ -40,10 +40,14 @@ def run(config: CFRunConfig, out_path: str = None) -> str:
     dataset = load_dataset_of_string(config.dataset)
     print(f"Loaded {dataset.get_dataset_size()} items; using {config.n} with seed {config.seed}")
 
-    task = CounterfactualTask(dataset, seed=config.seed)
+    task = CounterfactualTask(
+        dataset, seed=config.seed,
+        verifier_sees_solver_output=config.verifier_sees_solver_output,
+    )
     strategy = CounterfactualStrategy(
         max_loops=config.max_loops, max_tokens=config.max_tokens,
         verifier_max_tokens=config.verifier_max_tokens, temperature=config.temp,
+        verifier_accept_on_unparsed=config.verifier_accept_on_unparsed,
     )
     subset = dataset.get_random_subset(size=config.n, seed=config.seed)
     examples = [subset[i] for i in range(len(subset))]
@@ -69,6 +73,7 @@ def run(config: CFRunConfig, out_path: str = None) -> str:
             prior_steps = prior.get(item_id, [])
             if any(s.get("final") for s in prior_steps):
                 continue
+            set_item_seed(config.seed, item_id)  # per-item RNG: item i starts identically everywhere
             if models is None:
                 models = {
                     "solver": get_model(config.solver_model),

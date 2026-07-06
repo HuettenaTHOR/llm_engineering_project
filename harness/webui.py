@@ -12,12 +12,48 @@ import argparse
 import glob
 import json
 import os
+import sys
+from dataclasses import asdict
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlparse, parse_qs
 
-from io_jsonl import read_records, read_meta
+# Make the repo root importable regardless of how this file is invoked (`python webui.py` from
+# within harness/, or `python harness/webui.py` from the repo root) so the absolute imports below
+# resolve either way.
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+from harness.io_jsonl import read_records, read_meta
+from shared_utils.record_model import reconstruct_records
 
 RESULTS_DIR = "results"
+
+
+def grades_path(out_path: str) -> str:
+    return out_path.replace(".jsonl", ".grades.jsonl")
+
+
+def is_cf_shaped(records: list) -> bool:
+    """The counterfactual loop writes one flat line per STEP (kind: solve/cf, several lines per
+    item); the solve task writes one nested record per ITEM. Detect the former by the 'kind' key
+    every CF step line carries."""
+    return bool(records) and "kind" in records[0]
+
+
+def cf_records(full_path: str, raw: list) -> list:
+    """Collapse the flat per-step CF lines into the same nested-iteration record shape the solve
+    task already uses (via reconstruct_records), then merge in the run's Haiku grades (first CF
+    vs final CF validity) when a .grades.jsonl sibling exists."""
+    grades = {g["item_id"]: g for g in read_records(grades_path(full_path))}
+    out = []
+    for rec in reconstruct_records(raw):
+        d = asdict(rec)
+        g = grades.get(rec.item_id)
+        if g:
+            d["first_valid_obj"] = g.get("first_valid_obj")
+            d["final_valid_obj"] = g.get("valid_obj")
+            d["same_candidate"] = g.get("same_candidate")
+        out.append(d)
+    return out
 
 
 def list_runs():
@@ -75,7 +111,9 @@ class Handler(BaseHTTPRequestHandler):
             full = safe_path(rel)
             if not full or not os.path.exists(full):
                 return self._json(404, {"error": f"run not found: {rel}"})
-            return self._json(200, {"meta": read_meta(full), "records": read_records(full)})
+            raw = read_records(full)
+            records = cf_records(full, raw) if is_cf_shaped(raw) else raw
+            return self._json(200, {"meta": read_meta(full), "records": records})
 
         return self._json(404, {"error": "not found"})
 
@@ -200,7 +238,8 @@ async function openRun(path) {
   const records = data.records || [];
   const isCF = records.some(r => r.target_y_ce !== null && r.target_y_ce !== undefined)
             || records.some(r => r.final_val !== null && r.final_val !== undefined);
-  CURRENT = { meta:data.meta||{}, records, isCF };
+  const hasGrades = records.some(r => r.first_valid_obj !== null && r.first_valid_obj !== undefined);
+  CURRENT = { meta:data.meta||{}, records, isCF, hasGrades };
   $("#placeholder").hidden = true; $("#run").hidden = false;
   renderHeader(); renderSummary(); renderHead(); applyFilter();
 }
@@ -234,6 +273,15 @@ function renderSummary() {
     const scored = recs.filter(r=>r.final_val===true||r.final_val===false).length;
     cards.push(["Val (self-consistency)", scored? pct(pass/scored) : "—"]);
   }
+  if (CURRENT.hasGrades) {
+    const graded = recs.filter(r=>r.first_valid_obj!==null && r.first_valid_obj!==undefined);
+    const g = graded.length;
+    const firstValid = graded.filter(r=>r.first_valid_obj===true).length;
+    const finalValid = graded.filter(r=>r.final_valid_obj===true).length;
+    cards.push(["Val_obj (Haiku) 1st CF", g? pct(firstValid/g) : "—"]);
+    cards.push(["Val_obj (Haiku) final CF", g? pct(finalValid/g) : "—"]);
+    if (g) cards.push(["ΔVal_obj (final − 1st)", ((finalValid-firstValid)/g*100).toFixed(1) + "pp"]);
+  }
   const corr = recs.filter(r=>r.final_correct===true).length;
   const corrScored = recs.filter(r=>r.final_correct===true||r.final_correct===false).length;
   if (corrScored) cards.push([CURRENT.isCF?"Solve acc (orig)":"Accuracy", pct(corr/corrScored)]);
@@ -251,7 +299,8 @@ function renderHead() {
   cols.push("gold");
   if (CURRENT.isCF) cols.push("target yCE");
   cols.push("orig ans");
-  cols.push(CURRENT.isCF ? "Val" : "correct");
+  cols.push(CURRENT.isCF ? "Val (self)" : "correct");
+  if (CURRENT.hasGrades) { cols.push("Val_obj 1st"); cols.push("Val_obj final"); }
   cols.push("loops");
   $("#head-row").innerHTML = cols.map(c=>`<th>${c}</th>`).join("");
 }
@@ -260,6 +309,12 @@ function badge(outcome) {
   if (outcome==="pass") return '<span class="badge b-good">pass</span>';
   if (outcome==="fail") return '<span class="badge b-bad">fail</span>';
   if (outcome==="genfail") return '<span class="badge b-warn">gen-fail</span>';
+  return '<span class="badge b-mut">—</span>';
+}
+
+function boolBadge(v) {
+  if (v === true) return '<span class="badge b-good">valid</span>';
+  if (v === false) return '<span class="badge b-bad">invalid</span>';
   return '<span class="badge b-mut">—</span>';
 }
 
@@ -273,16 +328,22 @@ function applyFilter() {
     const oc = outcomeOf(r);
     if (f !== "all" && f !== oc) return;
     shown++;
-    const ncols = 7 + (CURRENT.isCF?1:0); // #, item, question, gold, [target], orig, outcome, loops
     const tr = document.createElement("tr"); tr.className = "item";
-    let cells = `<td class="mono">${i}</td><td class="mono">${esc((r.item_id||"").slice(0,8))}</td>`
-      + `<td class="q">${esc(short(r.question))}</td><td class="mono">${esc(r.gold)}</td>`;
-    if (CURRENT.isCF) cells += `<td class="mono">${esc(r.target_y_ce)}</td>`;
-    cells += `<td class="mono">${esc(r.solver_original_answer)}</td><td>${badge(oc)}</td>`
-      + `<td class="mono">${(r.iterations||[]).length}</td>`;
-    tr.innerHTML = cells;
+    const cellList = [
+      `<td class="mono">${i}</td>`,
+      `<td class="mono">${esc((r.item_id||"").slice(0,8))}</td>`,
+      `<td class="q">${esc(short(r.question))}</td>`,
+      `<td class="mono">${esc(r.gold)}</td>`,
+    ];
+    if (CURRENT.isCF) cellList.push(`<td class="mono">${esc(r.target_y_ce)}</td>`);
+    cellList.push(`<td class="mono">${esc(r.solver_original_answer)}</td>`, `<td>${badge(oc)}</td>`);
+    if (CURRENT.hasGrades) {
+      cellList.push(`<td>${boolBadge(r.first_valid_obj)}</td>`, `<td>${boolBadge(r.final_valid_obj)}</td>`);
+    }
+    cellList.push(`<td class="mono">${(r.iterations||[]).length}</td>`);
+    tr.innerHTML = cellList.join("");
     const detail = document.createElement("tr"); detail.className = "detail"; detail.hidden = true;
-    detail.innerHTML = `<td colspan="${ncols}"></td>`;
+    detail.innerHTML = `<td colspan="${cellList.length}"></td>`;
     tr.onclick = () => { if (detail.hidden && !detail.dataset.built) { detail.firstChild.innerHTML = renderTrace(r); detail.dataset.built="1"; }
                          detail.hidden = !detail.hidden; };
     rows.appendChild(tr); rows.appendChild(detail);
@@ -293,21 +354,31 @@ function applyFilter() {
 function renderTrace(r) {
   let html = `<div class="kv">item_id <span class="mono">${esc(r.item_id)}</span>`;
   if (r.human_audit!=null) html += ` · human_audit: ${esc(JSON.stringify(r.human_audit))}`;
+  if (r.same_candidate!=null) html += ` · 1st CF == final CF: ${esc(r.same_candidate)}`;
   html += `</div><div class="role">Question</div><pre>${esc(r.question)}</pre>`;
-  (r.iterations||[]).forEach(it => {
+  const nIters = (r.iterations||[]).length;
+  (r.iterations||[]).forEach((it, idx) => {
     const vb = it.verdict==="accept" ? '<span class="badge b-good">accept</span>'
              : it.verdict==="reject" ? '<span class="badge b-bad">reject</span>'
              : '<span class="badge b-mut">single-shot</span>';
-    html += `<div class="iter"><h4>iteration ${it.iteration} ${vb}
-       <span class="kv">solver→ <b class="mono">${esc(it.solver_solve)}</b>`;
+    const tags = [];
+    if (CURRENT.isCF && idx===0) tags.push('<span class="badge b-mut">1st CF</span>');
+    if (CURRENT.isCF && idx===nIters-1) tags.push('<span class="badge b-mut">final CF</span>');
+    html += `<div class="iter"><h4>iteration ${it.iteration} ${vb} ${tags.join(" ")}
+       <span class="kv">`;
+    if (it.solver_solve != null) html += `solver→ <b class="mono">${esc(it.solver_solve)}</b> &nbsp;`;
     if (it.verifier_says!=null || it.verifier_output!=null) {
       const vs = it.verifier_says===true ? "yes" : it.verifier_says===false ? "no" : "—";
-      html += ` &nbsp; verifier→ <b class="mono">${vs}</b>`;
+      html += `verifier→ <b class="mono">${vs}</b>`;
     }
     html += `</span></h4>`;
     html += `<div class="role">solver output${CURRENT.isCF?" (candidate x_CE)":""}</div><pre>${esc(it.candidate)}</pre>`;
     if (it.verifier_output != null)
       html += `<div class="role">verifier output (step-check → yes/no)</div><pre>${esc(it.verifier_output)}</pre>`;
+    if (CURRENT.hasGrades) {
+      const gv = idx===0 ? r.first_valid_obj : (idx===nIters-1 ? r.final_valid_obj : null);
+      if (gv != null) html += `<div class="role">Val_obj (Haiku-graded)</div><pre>${gv===true?"valid":"invalid"}</pre>`;
+    }
     html += `</div>`;
   });
   return html;

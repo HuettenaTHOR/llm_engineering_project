@@ -4,7 +4,7 @@ from harness.strategies.base_strategy import Strategy
 class SingleShot(Strategy):
     """One solver call, one grade, one trace entry. The baseline control flow."""
 
-    def __init__(self, max_tokens: int = 1200, temperature: float = 0.0):
+    def __init__(self, max_tokens: int = 10000, temperature: float | None = None):
         self.max_tokens = max_tokens
         self.temperature = temperature
 

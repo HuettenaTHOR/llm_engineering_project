@@ -30,18 +30,39 @@ GEMMA_MODELS = (
 
 )
 
+# Standard-chat causal LMs (no <think> block); loaded via the generic HuggingFaceModel.
+LLAMA_LADDER = (
+    "meta-llama/Llama-3.1-8B-Instruct",  # gated: request access + `huggingface-cli login` first
+)
+
+PHI_MODELS = (
+    "microsoft/Phi-4-mini-instruct",  # 3.8B, fits bf16
+    "microsoft/phi-4",                # 14B, needs 8-bit on a 16GB card
+)
+
 ANTHROPIC_MODELS = ("claude-haiku-4-5",)
+
+# Repos whose bf16 footprint overflows a 16GB card, so they default to 8-bit (near-lossless at
+# greedy decode). Ministral is excluded -- MistralModel loads its own native FP8 checkpoint.
+_NEEDS_8BIT = frozenset({
+    "Qwen/Qwen2.5-7B-Instruct",
+    "meta-llama/Llama-3.1-8B-Instruct",
+    "microsoft/phi-4",
+    "google/gemma-4-E4B-it",
+})
 
 
 def load_model_from_str(model_name: str, quantize: str = None):
-    """ loads the model based on the provided model name. ``quantize`` (e.g. "8bit") lets a large
-    model (7B) fit a 16GB card; currently honored by the Qwen2.5 loader. """
+    """Loads the model for the given repo id. ``quantize`` (e.g. "8bit") forces low-bit loading;
+    when left None, models in ``_NEEDS_8BIT`` auto-select 8-bit so they fit the 16GB card."""
+    if quantize is None and model_name in _NEEDS_8BIT:
+        quantize = "8bit"
 
     if model_name in ANTHROPIC_MODELS:
         from shared_utils.models.anthropic_model import AnthropicModel
         return AnthropicModel(model_name)
     elif model_name in QWEN35_LADDER:
-        # Qwen3.5 instruct models use the standard system/user chat shape.
+        # Qwen3.5 is a thinking model (<think> block); its own class handles enable_thinking.
         from shared_utils.models.qwen35_model import Qwen35Model
         return Qwen35Model(model_name)
     elif model_name in QWEN25_LADDER:
@@ -54,6 +75,6 @@ def load_model_from_str(model_name: str, quantize: str = None):
         from shared_utils.models.gemma_model import GemmaModel
         return GemmaModel(model_name, quantize=quantize)
     else:
-        # Treat anything else as a HuggingFace repo id (Qwen ladder or any model to try out).
+        # Llama, Phi, or any other standard-chat HF repo id (also the fallback for ad-hoc testing).
         from shared_utils.models.huggingface_model import HuggingFaceModel
-        return HuggingFaceModel(model_name)
+        return HuggingFaceModel(model_name, quantize=quantize)

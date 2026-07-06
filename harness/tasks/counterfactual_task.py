@@ -21,11 +21,15 @@ from harness.CONSTANTS import (
 
 
 class CounterfactualTask:
-    def __init__(self, dataset, seed: int = 42, offset_low: int = -10, offset_high: int = 10):
+    def __init__(self, dataset, seed: int = 42, offset_low: int = -10, offset_high: int = 10,
+                 verifier_sees_solver_output: bool = False):
         self.dataset = dataset
         self.seed = seed
         self.offset_low = offset_low
         self.offset_high = offset_high
+        # False -> blind judge (target + candidate only, re-solves independently). True -> trace-aware
+        # judge that also sees the solver's original solve. See verifier_messages.
+        self.verifier_sees_solver_output = verifier_sees_solver_output
 
     def gold(self, example) -> int | None:
         """Original GSM8K gold integer (the ``#### <n>`` answer), for logging / original_correct."""
@@ -60,9 +64,23 @@ class CounterfactualTask:
         return messages
 
     def verifier_messages(self, question: str, solver_output: str, target: int, candidate: str) -> list:
-        """Verifier judge layout: system carries the question + target, then solver_output, the
-        revise instruction, and the candidate revised problem."""
+        """Verifier judge layout. The system prompt always carries the original question + target.
+
+        Blind (``verifier_sees_solver_output=False``, default): system + a single user turn with the
+        candidate, so the judge re-solves independently (no anchoring on the solver's reasoning).
+
+        Trace-aware (True): the 4-turn layout that also replays the solver's original solve. The
+        candidate must be the final *user* turn for the judge to answer, so the solver's turn sits
+        as ``user`` and the revise instruction as ``assistant`` (deliberate, not a role slip)."""
         system = COUNTERFACTUAL_VERIFIER_SYSTEM_PROMPT.format(question=question, target=target)
+        if not self.verifier_sees_solver_output:
+            return [
+                {"role": "system", "content": system},
+                {"role": "user", "content": (
+                    "This is the revised math problem. Check whether its correct final answer is "
+                    f"exactly {target}:\n{candidate}"
+                )},
+            ]
         revise = COUNTERFACTUAL_REVISE_TEMPLATE.format(target=target)
         return [
             {"role": "system", "content": system},
