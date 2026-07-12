@@ -26,12 +26,18 @@ class Qwen25Model(BaseModel):
             ).to(self.device)
         print(f"Using device: {self.device}")
 
-    def inference(self, conversation: list, max_tokens: int = 1000, temperature: float | None = None) -> str:
+    def inference(self, conversation: list, max_tokens: int = 1000, temperature: float | None = None,
+                  max_time: float | None = 300) -> str:
         """
         This method implements the inference logic for the HuggingFace model."""
         input_text = self.build_conversation(conversation)
         inputs = self.tokenizer(input_text, return_tensors="pt").to(self.device)
         gen_kwargs = {"max_new_tokens": max_tokens}
+        if max_time is not None:
+            # Wall-clock cap per generation (seconds): bounds runaway generations that ramble to
+            # max_tokens near the VRAM cap (observed multi-hour items). transformers stops at
+            # max_time and returns the text so far; fast/normal generations finish well under it.
+            gen_kwargs["max_time"] = max_time
         if temperature is not None:  # explicit float -> temp 0 greedy (reproducible), else sample
             gen_kwargs["do_sample"] = temperature > 0
             if temperature > 0:

@@ -3,12 +3,14 @@
   "n": 2,
   "seed": 42,
   "max_loops": 2,
-  "temp": 0.0,
+  "temp": null,
   "max_tokens": 10000,
   "verifier_max_tokens": 10000,
   "verifier_accept_on_unparsed": true,
   "verifier_sees_solver_output": false,
   "runs": [
+    {"name": "smoke_haiku4.5", "max_loops": 3, "solver_model": "claude-haiku-4-5", "verifier_model": "claude-haiku-4-5", "checker_model": "claude-haiku-4-5", "temperature": 1.0},
     {"name": "smoke_qwen2.5-7b", "max_loops": 3, "solver_model": "Qwen/Qwen2.5-7B-Instruct", "verifier_model": "Qwen/Qwen2.5-7B-Instruct", "checker_model": "Qwen/Qwen2.5-7B-Instruct", "temperature": 1.0}
+    
   ]
 }

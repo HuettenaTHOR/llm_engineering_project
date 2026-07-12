@@ -1,9 +1,9 @@
 {
   "config": {
-    "solver_model": "Qwen/Qwen2.5-7B-Instruct",
-    "verifier_model": "Qwen/Qwen2.5-7B-Instruct",
-    "checker_model": "Qwen/Qwen2.5-7B-Instruct",
-    "name": "smoke_qwen2.5-7b",
+    "solver_model": "claude-haiku-4-5",
+    "verifier_model": "claude-haiku-4-5",
+    "checker_model": "claude-haiku-4-5",
+    "name": "smoke_haiku4.5",
     "dataset": "gsm8k",
     "n": 2,
     "seed": 42,
@@ -16,5 +16,5 @@
   },
   "git_hash": "dddd3ea2d833bd1b1098b0ee9891eca3ad41ffa6",
   "seed": 42,
-  "out_path": "results/counterfactual_loop_smoke_qwen2.5-7b.jsonl"
+  "out_path": "results/counterfactual_loop_smoke_haiku4.5.jsonl"
 }

@@ -16,10 +16,11 @@ from tqdm import tqdm
 
 from harness.fixed_seeds import set_all_seeds, set_item_seed
 from harness.io_jsonl import JsonlWriter, write_meta, git_hash, read_records
-from harness.runner import make_item_id
+from harness.runner import make_item_id, _is_oom_error, _free_cuda_cache
 from harness.cf_config import CFRunConfig, default_out_path, load_configs
 from harness.tasks import CounterfactualTask
 from harness.strategies import CounterfactualStrategy
+from harness.strategies.counterfactual_loop import _record
 from shared_utils.models import load_model_from_str
 from shared_utils.dataset_folder import load_dataset_of_string
 
@@ -73,15 +74,33 @@ def run(config: CFRunConfig, out_path: str = None) -> str:
             prior_steps = prior.get(item_id, [])
             if any(s.get("final") for s in prior_steps):
                 continue
-            set_item_seed(config.seed, item_id)  # per-item RNG: item i starts identically everywhere
             if models is None:
                 models = {
                     "solver": get_model(config.solver_model),
                     "verifier": get_model(config.verifier_model),
                     "checker": get_model(config.checker_model),
                 }
-            for step in strategy.run(task, example, models, prior_steps=prior_steps):
-                writer.append({"item_id": item_id, **step})
+            try:
+                # set_item_seed is INSIDE the guard on purpose: a CUDA OOM from the previous item's
+                # generation is reported asynchronously and often surfaces at the next CUDA call --
+                # here torch.manual_seed -- so it must be caught to skip rather than abort the run.
+                set_item_seed(config.seed, item_id)  # per-item RNG: item i starts identically everywhere
+                for step in strategy.run(task, example, models, prior_steps=prior_steps):
+                    writer.append({"item_id": item_id, **step})
+            except Exception as exc:  # noqa: BLE001 -- re-raised below unless it's an OOM
+                if not _is_oom_error(exc):
+                    raise
+                # VRAM overload: write a final gen-fail marker so the item is skipped (and stays
+                # skipped on resume) instead of aborting the whole run.
+                print(f"\n[OOM] skipping item {item_id} (VRAM overload): {exc}", file=sys.stderr)
+                writer.append({"item_id": item_id, **_record(
+                    "solve", -1, question=example["question"], gold=task.gold(example),
+                    gen_fail=True, final=True, oom_skipped=True)})
+            finally:
+                # Free the CUDA allocator's blocks after every item -- the CF loop's growing per-item
+                # KV caches fragment the allocator otherwise (the solve runner does the same). Also
+                # resets enough state to recover from a caught OOM before the next item.
+                _free_cuda_cache()
 
     return out_path
 

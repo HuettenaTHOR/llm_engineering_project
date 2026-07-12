@@ -1,0 +1,356 @@
+\documentclass[twoside,twocolumn,10pt]{article}
+
+% -----------------------------
+% Packages
+% -----------------------------
+\usepackage{fancyhdr}
+\usepackage{geometry}
+\usepackage{abstract}
+\usepackage{graphicx}
+\usepackage{titlesec}
+\usepackage{ragged2e}
+\usepackage{amssymb}
+\usepackage{parskip}
+\usepackage{amsmath}
+\usepackage{newtxtext}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{balance}
+\usepackage[backend=bibtex,style=ieee]{biblatex}
+\addbibresource{references.bib}
+\usepackage[font=footnotesize,labelfont=bf,justification=raggedright,format=plain]{caption}
+\usepackage{float}
+
+% -----------------------------
+% Bibliography Heading
+% -----------------------------
+\defbibheading{bibliography}[\refname]{%
+  \section{\MakeUppercase{REFERENCES}}}
+
+% -----------------------------
+% Custom Column Types
+% -----------------------------
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
+
+% -----------------------------
+% Caption Formatting
+% -----------------------------
+\captionsetup[table]{labelsep=period, justification=raggedright}
+\captionsetup[figure]{labelsep=period, justification=raggedright}
+
+% -----------------------------
+% Page Geometry
+% -----------------------------
+\geometry{
+    a4paper,
+    left=0.8in,
+    right=0.8in,
+    top=1in,
+    bottom=1in
+}
+
+\setlength{\columnsep}{15pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\frenchspacing
+
+% -----------------------------
+% Abstract Formatting
+% -----------------------------
+\renewcommand{\abstractname}{\hspace{1.3em}\textbf{Abstract}}
+\renewcommand{\abstractnamefont}{\normalfont\fontsize{10}{14}\bfseries\MakeUppercase}
+\renewcommand{\absnamepos}{flushleft}
+\renewcommand{\abstracttextfont}{\normalfont\fontsize{11}{13}\selectfont}
+
+% -----------------------------
+% Header / Footer Style
+% -----------------------------
+\setcounter{page}{1}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\small SHORT PAPER TITLE}
+\fancyhead[CO]{\small Author1 and Author2 (Year)}
+\fancyfoot[C]{\thepage}
+
+% -----------------------------
+% First Page Style
+% -----------------------------
+\fancypagestyle{firstpage}{
+  \fancyhf{}
+  \fancyhead[LO]{\small Engineering for LLMs}
+ \fancyhead[RO]{\small Prof. Bilal Zafar}
+  \fancyfoot[L]{\footnotesize Received: DD Month YYYY; Revised: DD Month YYYY; Accepted: DD Month YYYY\\\textsuperscript{*}Corresponding Author: Name \textless email@example.com\textgreater}
+  \fancyfoot[R]{\footnotesize \textcopyright\ Year by the Author(s). Published by LGURJCSIT,\\ \hspace{0.5cm} under the CC-BY license}
+  \renewcommand{\headrulewidth}{0.4pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+}
+
+% -----------------------------
+% Title / Author
+% -----------------------------
+\title{\fontsize{16}{20}\selectfont\textbf{Improving accuracy on generating counterfactual questions on reasoning benchmarks by self-verification}}
+
+\author{
+    \fontsize{12}{14}\selectfont
+    Sebastian Orths\textsuperscript{1}, Frederik Hüttemann\textsuperscript{2}\\[1ex]
+    \fontsize{12}{14}\selectfont
+    \textsuperscript{1}Ruhr-Universtität Bochum, Bochum, Germany (s.orths@email.com) \\
+    \textsuperscript{2}Ruhr-Universität Bochum, Bochum, Germany (f.huettemann@rub.de)
+}
+
+\date{}
+
+% -----------------------------
+% Section Formatting
+% -----------------------------
+\titleformat{\section}{\normalsize\bfseries\uppercase}{\thesection.}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries\flushleft}{\thesubsection.}{1em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\itshape\flushleft}{\thesubsubsection.}{1em}{}
+
+% -----------------------------
+% Document Start
+% -----------------------------
+\begin{document}
+
+\twocolumn[
+\begin{@twocolumnfalse}
+
+\vspace{-0.7cm}
+\noindent
+\raggedright
+{\fontsize{11}{13}\selectfont}
+\hfill
+{\fontsize{11}{13}\selectfont\footnotesize \nolinkurl{https://github.com/HuettenaTHOR/llm_engineering_project}}
+
+\vspace{-0.5cm}
+
+\maketitle
+\thispagestyle{firstpage}
+
+\section*{\hspace{-1.5mm}Abstract}
+\fontsize{10}{12}\selectfont
+\justifying
+\noindent
+The rapid growth of global financial systems has significantly increased the complexity of money laundering activities, posing serious challenges to traditional Anti-Money Laundering (AML) mechanisms. Conventional rule-based approaches are often inadequate in detecting sophisticated and evolving financial crimes. This study proposes an Artificial Intelligence (AI)-driven framework to enhance AML compliance and improve the detection of financial anomalies in large-scale transactional data. The proposed framework integrates multiple machine learning techniques, including supervised models, unsupervised anomaly detection methods, and Graph Neural Networks (GNNs) for capturing complex relationships in transaction networks. Additionally, Natural Language Processing (NLP) is utilized to analyze unstructured financial data, while privacy-preserving techniques such as federated learning are incorporated to ensure secure and compliant data handling. The framework is evaluated using both simulated and real-world datasets. Experimental results demonstrate improved detection performance, with graph-based approaches showing superior accuracy and robustness.
+
+\vspace{0.3cm}
+\noindent\textbf{Keywords:}
+Artificial Intelligence, Large-Language Models, Counterfactual Examples, Benchmarks, Agentic LLMs, Self-Verification
+
+\vspace{0.8cm}
+\end{@twocolumnfalse}
+]
+
+% -----------------------------
+% Main Text
+% -----------------------------
+\section{Introduction}
+\fontsize{11}{13}\selectfont
+Modern Large Language Models (LLMs) are great at solving reasoning tasks. Most available models are capable of solving reasoning benchmarks. They can even surpass human performance \cite{Luo_2024}. On grade-school math word problems such as \textbf{GSM8K} \cite{cobbe2021trainingverifiers}, prompting techniques such as chain-of-thought reasoning and self-consistency sampling \cite{wang2022selfconsistency} have pushed reported accuracies above 90\%, which is often taken as evidence that LLMs have learned genuine multi-step arithmetic reasoning rather than surface-level pattern completion.
+
+This apparent mastery is hard to distinguish from very good pattern matching, though. A model that has learned what a typical GSM8K solution looks like can still answer correctly without actually tracking the causal structure of the scenario it is solving. \textit{Counterfactual explanations}, i.e.\ asking what minimal change to the input would produce a different, specified output, are a long-standing diagnostic in explainable AI for precisely this reason: producing a valid counterfactual requires understanding \emph{why} a model reached its original answer, not just reproducing that answer again. Recent work applies this idea directly to LLMs by asking a model to generate its own \textit{self-generated counterfactual examples} (SCEs) instead of explaining an externally given edit \cite{dehghanighobadi2025llmsexplaincounterfactually,mayne2025llmsdontknowdecision}. The results are sobering. On GSM8K, models that solve the original problems almost perfectly still generate valid single-shot counterfactuals far less reliably, and forcing the edit to be minimal collapses validity even further.
+
+Separately, a growing body of work treats LLMs as agents that can iterate on their own output. Instead of answering once, a model is asked to critique and revise a draft over several turns, sometimes with the help of an independent verifier or an external tool \cite{madaan2023selfrefine,shinn2023reflexion,gou2023critic}. Verification is central to this idea: process reward models that check every reasoning step instead of only the final answer measurably improve math performance \cite{lightman2023letsverify}, and LLMs are increasingly used to judge other models' outputs automatically \cite{zheng2023judging}. Self-correction is not automatically helpful, though. LLMs that revise their own reasoning without any external feedback have been shown to talk themselves out of correct answers \cite{huang2023llmscannotselfcorrect}, so how a verification loop is actually built matters at least as much as whether one exists at all.
+
+These two research threads, counterfactual probing and agentic self-verification, have mostly been studied separately so far. Existing SCE work stops at single-shot generation, or at best folds a self-verification instruction into a single generation call, which is not the same as a genuine multi-turn agentic loop with an independent verification step (Section~\ref{sec:related-work} discusses this distinction in more detail). This project asks how the two ideas intersect: when a model is clearly good at a reasoning benchmark like GSM8K but clearly bad at generating single-shot counterfactuals for it, does putting it inside a \textbf{solver+verifier agentic loop} recover a measurable part of that gap? We build an agentic harness in which a solver model proposes a counterfactual problem, an independent verifier checks it and gives targeted feedback, and the solver revises its answer accordingly, then measure per model whether looping actually beats a matched single-shot baseline.
+
+\section{Related Work}
+\label{sec:related-work}
+\fontsize{11}{13}\selectfont
+This project builds directly on \textcite{dehghanighobadi2025llmsexplaincounterfactually}, who are among the first to ask whether LLMs can generate \textit{self-generated counterfactual examples} (SCEs) for their own predictions, instead of merely explaining externally supplied counterfactuals. Across several datasets they find that most instruction-tuned models can produce some valid SCE, but validity depends heavily on the dataset. On \textbf{GSM8K}, whose multi-step arithmetic gives an edit many more ways to go wrong than a single-label classification task would, fewer than 20\% of generated counterfactuals were valid. That is the sharpest gap among the datasets they test, and it is the starting point of this project.
+
+\textcite{mayne2025llmsdontknowdecision} extend this line of work by separating two properties that \textcite{dehghanighobadi2025llmsexplaincounterfactually} treat together: \textit{validity} (does the edited input actually produce the target output) and \textit{minimality} (is the edit small). Across seven models, including Claude 3.7 Sonnet, GPT-4.1, and o3, and three datasets, they report a robust trade-off. Unconstrained prompting yields close to 100\% valid SCEs but mostly non-minimal edits, while explicitly instructing the model to keep the edit minimal collapses validity, even though the edits that do succeed are noticeably smaller. They also test a self-verification-style system prompt that pushes the model to check and revise its own SCE against the constraints before answering. This narrows the gap somewhat, but the check happens inside a single generation call: the model reasons about and revises its own draft within one continuous chain of thought. That does not correspond to agentic behavior in the sense used in this project, since there is no independent verifier, no separate turn boundary, and no possibility of the check disagreeing with a solver it cannot see past.
+
+This style of in-context self-verification sits at the weak end of a broader range of iterative LLM self-improvement methods. \textsc{Self-Refine} \cite{madaan2023selfrefine} and \textsc{Reflexion} \cite{shinn2023reflexion} show that letting a model generate feedback on its own output and then revise across several turns improves performance on tasks from code generation to sequential decision-making, while \textsc{Critic} \cite{gou2023critic} argues that grounding that feedback in an external tool, such as a code interpreter, rather than the model's own judgment, is often necessary to actually catch errors. On math specifically, \textcite{lightman2023letsverify} show that a dedicated process reward model, trained to judge each reasoning step rather than only the final answer, clearly outperforms outcome-only supervision, and LLMs are increasingly deployed as automatic judges of other models' output more generally \cite{zheng2023judging}. On the other hand, \textcite{huang2023llmscannotselfcorrect} report that LLMs asked to self-correct reasoning without external feedback can end up performing worse, sometimes turning a right answer into a wrong one while ``correcting'' it. That is exactly the kind of sycophancy risk a same-model, trace-aware verifier is exposed to.
+
+Positioned against this literature, this project is, to our knowledge, among the first to evaluate an agentic solver+verifier loop with a genuinely separate verification turn on the counterfactual-generation gap identified by \textcite{dehghanighobadi2025llmsexplaincounterfactually} and sharpened by \textcite{mayne2025llmsdontknowdecision}. Prior SCE work measures only single-shot generation, and prior self-correction work measures only standard reasoning tasks; this project combines both. The same GSM8K solver+verifier harness is evaluated on the underlying reasoning task as a capability gate, and on counterfactual generation in both single-shot and looped form, so that any recovered validity can be attributed to the agentic loop itself rather than to a stronger base model.
+
+
+\section{Methodology}
+\label{sec:methodology}
+\fontsize{11}{13}\selectfont
+The overall methodology of the project is based on the work of \textcite{dehghanighobadi2025llmsexplaincounterfactually}. Here, the focus is on generating SCEs for reasoning benchmarks. The main goal was to improve the generation of SCEs by using a self-verification approach. For this an agentic harness has been developed, which allows the model to self-verify the generated output.
+
+\subsection{Research Question}
+The research question is decomposed into three linked claims, each requiring its own measurement before the next becomes interpretable:
+\begin{itemize}
+\item \textbf{P1} --- the model solves GSM8K well (a capability gate; measured by solve accuracy).
+\item \textbf{P2} --- its single-shot generation of counterfactuals is bad (measured by single-shot $Val_{obj}$).
+\item \textbf{T} --- the solver+verifier loop beats single-shot generation (measured by $\Delta Val = Val_{obj}(\text{loop}) - Val_{obj}(\text{single})$, paired on the same items).
+\end{itemize}
+Only models that clear the P1 gate make P2 and T interpretable: a model that cannot solve GSM8K in the first place cannot be said to be ``good at the task but bad at explaining it.''
+
+\subsection{Task Definitions}
+Two tasks are used. The \textit{solve task} asks the model to solve the original GSM8K question and report its final integer answer. The \textit{counterfactual task} takes the model's own predicted answer $f(x)$ on the original question and constructs a target $y_{CE} = f(x) + \text{offset}$, where the offset is a seeded, per-item, non-zero integer in $[-10, 10]$. The model is then asked to minimally edit the original problem $x$ so that its correct answer becomes $y_{CE}$. Targeting the model's own prediction rather than the dataset's gold answer follows \textcite{dehghanighobadi2025llmsexplaincounterfactually} and keeps the task a genuine self-consistency probe: the model explains a change relative to what it itself believes, not relative to an answer it may never have produced.
+
+\subsection{Self-Verification Harness}
+The harness is built around three roles that can be assigned to the same or to different underlying models. The \textit{solver} produces the original solution and then proposes, and later revises, the counterfactual candidate. The \textit{verifier} is a judge: it is shown the candidate, either \textit{blind} (re-solving it independently from scratch) or \textit{trace-aware} (additionally shown the solver's own reasoning), and returns a one-line reason plus a YES/NO verdict. On a NO, the verifier's reason is fed back to the solver as an additional turn, and the solver revises the candidate; this repeats until the verifier accepts or a hand-settable \texttt{max\_loops} cap is reached. Grading is decoupled from the verdict: whichever candidate the loop ends on (accepted, or the cap was hit) is independently re-solved by a \textit{checker} to compute a local, secondary validity signal, while the primary validity metric is computed post-hoc by an external grader (Section~\ref{sec:metrics}). Setting \texttt{max\_loops=1} therefore yields the single-shot baseline: one candidate is generated and graded, and the verifier's verdict cannot change the outcome. In this project, solver, verifier, and checker are the same underlying model (a self-verifier); Section~\ref{sec:discussion} returns to what that choice does and does not let us conclude. The agentic loop itself was built to be reusable for any LLM and any self-verification task, not just this one.
+
+\subsection{Models}
+Four solver models are used, chosen to plausibly clear the P1 gate so that the counterfactual results are interpretable rather than confounded by an inability to do the arithmetic at all: \texttt{Qwen2.5-7B-Instruct}, \texttt{Qwen3.5-4B}, \texttt{Llama-3.1-8B-Instruct} (matching the baseline model family used by \textcite{dehghanighobadi2025llmsexplaincounterfactually}), and \texttt{Phi-4}. All are instruction-tuned chat models run locally. Two smaller Qwen models (0.5B/1.5B) are kept only as a low-reasoning contrast on the solve task, not as part of the counterfactual experiment.
+
+\subsection{Experimental Conditions}
+For each of the four solver models, two conditions are run on the same seeded 200-item GSM8K subset: \textit{single-shot} (\texttt{max\_loops=1}) and \textit{loop} (\texttt{max\_loops=3}), for eight runs in total. Conditions are paired at the item level: each item is re-seeded from \texttt{(seed, item\_id)} before its first generation, so item $i$ starts from an identical generation state under both conditions, and generation uses each model's own default sampling parameters rather than a single forced temperature. Solver, verifier, and checker are the same model throughout (self-verifier only); pairing each solver with an independent, stronger verifier is left for future work (Section~\ref{sec:discussion}).
+
+\subsection{Metrics and Statistical Analysis}
+\label{sec:metrics}
+Validity is graded objectively and post-hoc by Claude Haiku, kept outside the local generation loop: a candidate is \textit{valid} ($Val_{obj}$) if and only if Haiku's independent re-solve of the candidate matches $y_{CE}$ \textit{and} Haiku judges the edit minimal. The two components (solve rate, minimal rate) and a normalized edit distance are also logged individually as diagnostics. Solve accuracy on the original problem gives the P1 gate. $\Delta Val$ is computed per model on the items shared by both conditions and tested for significance with an exact McNemar test; all proportions are reported with Wilson 95\% confidence intervals. As a check on the automatic grader itself, a stratified sample of roughly 30 graded items is re-judged by hand and reported as a Haiku$\leftrightarrow$human agreement rate.
+
+\section{Results}
+\label{sec:results}
+\fontsize{11}{13}\selectfont
+This section reports the outcome of the eight-run experiment matrix described in Section~\ref{sec:methodology} (four solver models $\times$ \{single-shot, loop\}), following the same P1 $\to$ P2 $\to$ T structure used to state the research question in Section~\ref{sec:methodology}. At the time of writing, generation and grading of the full matrix were still running; the tables and figure below are placeholders that fix the exact metrics to be reported, to be filled in once the runs and the Haiku grading pass complete.
+
+\subsection{P1 --- Solve Accuracy}
+Table~\ref{tab:p1} reports the solve accuracy of each model on the original GSM8K problems. This gates which models' counterfactual results are interpretable as ``good at reasoning, bad at explaining it,'' rather than simply bad at both.
+
+% TODO: fill in from results/eval_summary.json once the solve baseline (B2) has finished.
+\begin{table*}[t]
+\centering
+\caption{Solve accuracy per model (P1 gate).}
+\label{tab:p1}
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{L{4cm} C{2cm} C{2.5cm} C{2.5cm}}
+\toprule
+\textbf{Model} & \textbf{N} & \textbf{Solve Acc.\ (\%)} & \textbf{95\% CI} \\
+\midrule
+Qwen2.5-7B-Instruct     & \textit{TBD} & \textit{TBD} & \textit{TBD} \\
+Qwen3.5-4B              & \textit{TBD} & \textit{TBD} & \textit{TBD} \\
+Llama-3.1-8B-Instruct   & \textit{TBD} & \textit{TBD} & \textit{TBD} \\
+Phi-4                   & \textit{TBD} & \textit{TBD} & \textit{TBD} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{P2 --- Single-Shot Counterfactual Validity}
+Table~\ref{tab:p2} reports single-shot $Val_{obj}$ per model, together with its two components (solve rate, minimal rate) and mean edit distance. This is the direct counterpart of the sub-20\% GSM8K figure reported by \textcite{dehghanighobadi2025llmsexplaincounterfactually}.
+
+% TODO: fill in from results/eval_summary.json (single-shot rows) once the Haiku grader has run.
+\begin{table*}[t]
+\centering
+\caption{Single-shot counterfactual validity per model (P2).}
+\label{tab:p2}
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{L{3.7cm} C{2cm} C{2cm} C{2cm} C{2.3cm}}
+\toprule
+\textbf{Model} & \boldmath{$Val_{obj}$} \textbf{(\%)} & \textbf{Solve (\%)} & \textbf{Minimal (\%)} & \textbf{Edit Dist.} \\
+\midrule
+Qwen2.5-7B-Instruct     & \textit{TBD} & \textit{TBD} & \textit{TBD} & \textit{TBD} \\
+Qwen3.5-4B              & \textit{TBD} & \textit{TBD} & \textit{TBD} & \textit{TBD} \\
+Llama-3.1-8B-Instruct   & \textit{TBD} & \textit{TBD} & \textit{TBD} & \textit{TBD} \\
+Phi-4                   & \textit{TBD} & \textit{TBD} & \textit{TBD} & \textit{TBD} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{T --- Effect of the Verifier Loop}
+Table~\ref{tab:t} reports $\Delta Val$ per model with its exact McNemar $p$-value on the items shared between the single-shot and loop conditions. This table is the direct answer to the research question.
+
+% TODO: fill in from results/eval_summary.json (paired single-vs-loop McNemar output).
+\begin{table*}[t]
+\centering
+\caption{Effect of the solver+verifier loop on counterfactual validity (T).}
+\label{tab:t}
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{L{3.7cm} C{2.3cm} C{2.3cm} C{1.8cm} C{2cm}}
+\toprule
+\textbf{Model} & \boldmath{$Val_{obj}$} \textbf{single (\%)} & \boldmath{$Val_{obj}$} \textbf{loop (\%)} & \boldmath{$\Delta Val$} & \textbf{McNemar} \boldmath{$p$} \\
+\midrule
+Qwen2.5-7B-Instruct     & \textit{TBD} & \textit{TBD} & \textit{TBD} & \textit{TBD} \\
+Qwen3.5-4B              & \textit{TBD} & \textit{TBD} & \textit{TBD} & \textit{TBD} \\
+Llama-3.1-8B-Instruct   & \textit{TBD} & \textit{TBD} & \textit{TBD} & \textit{TBD} \\
+Phi-4                   & \textit{TBD} & \textit{TBD} & \textit{TBD} & \textit{TBD} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Loop-Depth Curve}
+Figure~\ref{fig:loop-depth} plots the validity achievable if the loop had been stopped at iteration $k$ ($Val@k$, for $k = 1, \ldots, 3$), which falls out of the per-iteration logging at no extra generation cost.
+
+% TODO: replace with the real plot (e.g. results/loop_depth_curve.png) once the loop runs finish.
+\begin{figure*}[t]
+\centering
+\fbox{\parbox[c][4cm]{0.72\textwidth}{\centering\itshape Placeholder --- insert the $Val@k$ loop-depth curve here once available (see \texttt{harness.counterfactual\_evaluator} output).}}
+\caption{Validity achievable by loop depth $k$, per model.}
+\label{fig:loop-depth}
+\end{figure*}
+
+\subsection{Verifier Behavior}
+Table~\ref{tab:verifier} reports, per model, the verifier's accept rate and the fraction of accepted candidates that are actually valid under $Val_{obj}$ (agreement). A high accept rate paired with low agreement would indicate the same-model sycophancy risk raised in Section~\ref{sec:related-work}.
+
+% TODO: fill in from results/eval_summary.json (verifier accept-rate / agreement).
+\begin{table*}[t]
+\centering
+\caption{Verifier accept rate and accept-agreement, loop condition only.}
+\label{tab:verifier}
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{L{4.5cm} C{3.5cm} C{3.5cm}}
+\toprule
+\textbf{Model} & \textbf{Accept Rate (\%)} & \textbf{Accept $\rightarrow$ Valid (\%)} \\
+\midrule
+Qwen2.5-7B-Instruct     & \textit{TBD} & \textit{TBD} \\
+Qwen3.5-4B              & \textit{TBD} & \textit{TBD} \\
+Llama-3.1-8B-Instruct   & \textit{TBD} & \textit{TBD} \\
+Phi-4                   & \textit{TBD} & \textit{TBD} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\subsection{Human Audit}
+Table~\ref{tab:audit} reports agreement between the Haiku grader and a $\sim$30-item, lightly model-stratified human audit sample, as a check on the primary validity metric.
+
+% TODO: fill in via harness.audit_sample report once the human_valid column has been hand-filled.
+\begin{table*}[t]
+\centering
+\caption{Haiku$\leftrightarrow$human agreement on the audit sample.}
+\label{tab:audit}
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{6pt}
+\begin{tabular}{C{4cm} C{4cm}}
+\toprule
+\textbf{N Audited} & \textbf{Haiku$\leftrightarrow$Human Agreement (\%)} \\
+\midrule
+\textit{TBD} & \textit{TBD} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+\section{Discussion}
+\label{sec:discussion}
+\fontsize{11}{13}\selectfont
+
+The results of this study align with existing literature, confirming the effectiveness of AI techniques in financial crime detection. Graph-based approaches, in particular, demonstrate superior performance due to their ability to model complex relationships.
+
+However, challenges such as computational complexity and data privacy remain significant barriers. The implementation of federated learning addresses some privacy concerns but introduces additional computational overhead.
+
+The findings suggest that hybrid models combining multiple algorithms offer the best performance. Future research should focus on improving model interpretability and expanding datasets to enhance generalizability.
+
+\section{Conclusion}
+\fontsize{11}{13}\selectfont
+
+This study demonstrates the potential of Artificial Intelligence in strengthening Anti-Money Laundering systems. By integrating supervised learning, unsupervised anomaly detection, and graph-based analysis, the proposed framework improves financial anomaly detection and supports more efficient compliance mechanisms. The results suggest that combining multiple AI techniques provides a scalable and adaptive solution for addressing modern financial crime challenges.
+
+\vspace{0.5cm}
+
+\small
+\textbf{Conflict of Interest:} The authors declare no conflict of interest.
+
+\textbf{Author Contributions:} Author 1 contributed to conceptualization, methodology, and writing. Author 2 contributed to data analysis and review. All authors approved the final manuscript.
+
+\textbf{Funding:} This research received no external funding.
+
+\textbf{Ethical Statement:} This study follows ethical and academic integrity guidelines.
+
+\balance
+\fontsize{11}{13}\selectfont
+\printbibliography
+
+\end{document}

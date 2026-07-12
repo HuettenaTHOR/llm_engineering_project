@@ -83,7 +83,7 @@ def parse_args(argv=None):
     parser.add_argument("--max-loops", type=int, default=5,
                         help="max solver-verifier loops (verifier_loop only)")
     parser.add_argument("--seed", type=int, default=42, help="RNG + subset seed")
-    parser.add_argument("--temp", type=float, default=0.0, help="sampling temperature")
+    parser.add_argument("--temp", type=float, default=1.0, help="sampling temperature")
     parser.add_argument("--strategy", choices=(*STRATEGIES, "both"), default="both",
                         help="which control flow to run")
     return parser.parse_args(argv)
