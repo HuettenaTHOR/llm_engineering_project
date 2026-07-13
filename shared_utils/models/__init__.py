@@ -42,6 +42,14 @@ PHI_MODELS = (
 
 ANTHROPIC_MODELS = ("claude-haiku-4-5",)
 
+OPENROUTER_MODELS = (
+    "mistralai/mistral-small-2603",
+    "google/gemini-3.1-flash-lite",
+    "openai/gpt-5.4-nano",
+    "openai/gpt-5.6-luna",
+    "deepseek/deepseek-v4-flash",
+)
+
 # Repos whose bf16 footprint overflows a 16GB card, so they default to 8-bit (near-lossless at
 # greedy decode). Ministral is excluded -- MistralModel loads its own native FP8 checkpoint.
 _NEEDS_8BIT = frozenset({
@@ -61,6 +69,9 @@ def load_model_from_str(model_name: str, quantize: str = None):
     if model_name in ANTHROPIC_MODELS:
         from shared_utils.models.anthropic_model import AnthropicModel
         return AnthropicModel(model_name)
+    elif model_name in OPENROUTER_MODELS:
+        from shared_utils.models.openrouter_model import OpenRouterModel
+        return OpenRouterModel(model_name)
     elif model_name in QWEN35_LADDER:
         # Qwen3.5 is a thinking model (<think> block); its own class handles enable_thinking.
         from shared_utils.models.qwen35_model import Qwen35Model

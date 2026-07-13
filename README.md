@@ -163,6 +163,14 @@ The post-hoc grader calls Claude Haiku:
 [Environment]::SetEnvironmentVariable('ANTHROPIC_API_KEY', '<your key>', 'User')
 ```
 
+### OpenRouter models (optional)
+
+Some models are served via [OpenRouter](https://openrouter.ai) instead of a vendor-specific API:
+
+```powershell
+[Environment]::SetEnvironmentVariable('OPENROUTER_API_KEY', '<your key>', 'User')
+```
+
 ---
 
 ## 4. Supported models
@@ -179,6 +187,7 @@ families are wired with the correct chat template / thinking behavior in `shared
 | **Phi-4** | `microsoft/Phi-4-mini-instruct` (3.8B), `microsoft/phi-4` (14B) | Standard chat |
 | **Mistral** | `mistralai/Ministral-3-{3B,8B}-Instruct-2512` | Native FP8 checkpoint |
 | **Anthropic** | `claude-haiku-4-5` | API grader (needs `ANTHROPIC_API_KEY`) |
+| **OpenRouter** | `mistralai/mistral-small-2603`, `google/gemini-3.1-flash-lite`, `openai/gpt-5.4-nano`, `openai/gpt-5.6-luna`, `deepseek/deepseek-v4-flash` | Hosted API models via OpenRouter (needs `OPENROUTER_API_KEY`) |
 
 **16 GB VRAM fit:** models whose bf16 footprint overflows the card auto-load 8-bit (near-lossless at
 greedy decode): `Qwen2.5-7B`, `Llama-3.1-8B`, `phi-4` (14B), `gemma-4-E4B-it` (the `_NEEDS_8BIT`

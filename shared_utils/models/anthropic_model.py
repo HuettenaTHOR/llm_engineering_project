@@ -10,7 +10,7 @@ class AnthropicModel(BaseModel):
     def __init__(self, model_name: str, *args, **kwargs):
         super().__init__(model_name, *args, **kwargs)
         self.api_model_name = MODEL_ALIASES.get(model_name, model_name)
-        self.client = anthropic.Anthropic()  # picks up ANTHROPIC_API_KEY from the env
+        self.client = anthropic.Anthropic(max_retries=3)  # picks up ANTHROPIC_API_KEY from the env; SDK retries with exponential backoff
 
     def inference(self, conversation: list, max_tokens: int = 1000, temperature: float | None = None) -> str:
         """
