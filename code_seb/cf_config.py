@@ -18,7 +18,7 @@ class CFRunConfig:
     n: int = 200
     seed: int = 42
     max_loops: int = 3
-    temp: float = 0.0
+    temp: float = 1.0
     max_tokens: int = 1200
     verifier_max_tokens: int = 320
 

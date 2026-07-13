@@ -39,7 +39,7 @@ def _record(kind, iteration, **over) -> dict:
 
 class CounterfactualStrategy:
     def __init__(self, max_loops: int = 3, max_tokens: int = 1200,
-                 verifier_max_tokens: int = 320, temperature: float = 0.0):
+                 verifier_max_tokens: int = 320, temperature: float = 1.0):
         self.max_loops = max_loops
         self.max_tokens = max_tokens
         self.verifier_max_tokens = verifier_max_tokens

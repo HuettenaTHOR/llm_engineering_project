@@ -1,0 +1,14 @@
+{
+  "dataset": "gsm8k",
+  "n": 200,
+  "seed": 42,
+  "temp": null,
+  "max_tokens": 10000,
+  "verifier_max_tokens": 10000,
+  "verifier_accept_on_unparsed": true,
+  "verifier_sees_solver_output": false,
+  "runs": [
+    {"name": "qwen3.5-4b-loop",   "max_loops": 5, "solver_model": "Qwen/Qwen3.5-4B", "verifier_model": "Qwen/Qwen3.5-4B", "checker_model": "Qwen/Qwen3.5-4B", "temperature": 1.0},
+    {"name": "phi4-loop",   "max_loops": 5, "solver_model": "microsoft/phi-4", "verifier_model": "microsoft/phi-4", "checker_model": "microsoft/phi-4", "temperature": 1.0}
+  ]
+}

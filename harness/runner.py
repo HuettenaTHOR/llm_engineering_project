@@ -105,8 +105,24 @@ def build_record(item_id: str, example: dict, task, result: dict) -> dict:
         "final_correct": result.get("final_correct"),
         "final_val": result.get("final_val"),
         "gen_fail": result["gen_fail"],
+        # True when the item was skipped on a CUDA OOM (VRAM overload), not a genuine model
+        # failure -- lets analysis tell a dropped datapoint apart from a real gen_fail.
+        "oom_skipped": result.get("oom_skipped", False),
         "human_audit": None,
     }
+
+
+def _is_oom_error(exc: BaseException) -> bool:
+    """True if ``exc`` is a CUDA out-of-memory (VRAM overload), so the item can be skipped instead
+    of aborting the whole run. ``torch.cuda.OutOfMemoryError`` subclasses RuntimeError, but some
+    paths raise a plain RuntimeError whose message names the OOM -- catch both."""
+    try:
+        import torch
+        if isinstance(exc, torch.cuda.OutOfMemoryError):
+            return True
+    except Exception:
+        pass
+    return isinstance(exc, RuntimeError) and "out of memory" in str(exc).lower()
 
 
 def _free_cuda_cache():
@@ -162,7 +178,15 @@ def run(config: RunConfig, out_path: str = None) -> str:
                     )
                     if config.verifier_no_thinking:
                         strategy.verifier_model.enable_thinking = False
-            result = strategy.run(task, example, model)
+            try:
+                result = strategy.run(task, example, model)
+            except Exception as exc:  # noqa: BLE001 -- re-raised below unless it's an OOM
+                if not _is_oom_error(exc):
+                    raise
+                # VRAM overload: free the cache, record the item as an OOM skip, keep going.
+                _free_cuda_cache()
+                print(f"\n[OOM] skipping item {item_id} (VRAM overload): {exc}", file=sys.stderr)
+                result = {"iterations": [], "gen_fail": True, "oom_skipped": True}
             writer.append(build_record(item_id, example, task, result))
             _free_cuda_cache()  # keep GPU usage flat across items (else it creeps -> OOM-kill)
 
