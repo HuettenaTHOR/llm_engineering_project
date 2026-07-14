@@ -1,0 +1,16 @@
+{
+  "task": "solve",
+  "dataset": "gsm8k",
+  "n": 200,
+  "seed": 42,
+  "temp": 1.0,
+  "max_tokens": 10000,
+  "verifier_max_tokens": 10000,
+  "verifier_accept_on_unparsed": true,
+  "runs": [
+    {"model": "Qwen/Qwen2.5-7B-Instruct", "strategy": "verifier_loop", "max_loops": 5, "temperature": 1.0},
+    {"model": "Qwen/Qwen3.5-4B", "strategy": "verifier_loop", "max_loops": 5, "temperature": 1.0},
+    {"model": "meta-llama/Llama-3.1-8B-Instruct", "strategy": "verifier_loop", "max_loops": 5, "temperature": 1.0},
+    {"model": "claude-haiku-4-5", "strategy": "verifier_loop", "max_loops": 5, "temperature": 1.0}
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "config": {
+    "model": "Qwen/Qwen3.5-4B",
+    "task": "solve",
+    "strategy": "verifier_loop",
+    "dataset": "gsm8k",
+    "max_loops": 5,
+    "temp": 1.0,
+    "n": 200,
+    "seed": 42,
+    "max_tokens": 10000,
+    "verifier_max_tokens": 10000,
+    "verifier_accept_on_unparsed": true,
+    "quantize": null,
+    "verifier_model": null,
+    "verifier_quantize": null,
+    "verifier_no_thinking": false
+  },
+  "git_hash": "dddd3ea2d833bd1b1098b0ee9891eca3ad41ffa6",
+  "seed": 42,
+  "out_path": "results/solve_verifier_loop_Qwen3.5-4B_loops5.jsonl"
+}

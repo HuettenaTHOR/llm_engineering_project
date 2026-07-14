@@ -1,0 +1,20 @@
+{
+  "config": {
+    "solver_model": "google/gemini-3.1-flash-lite",
+    "verifier_model": "google/gemini-3.1-flash-lite",
+    "checker_model": "google/gemini-3.1-flash-lite",
+    "name": "gemini-3.1-flash-lite",
+    "dataset": "gsm8k",
+    "n": 100,
+    "seed": 42,
+    "max_loops": 3,
+    "temp": null,
+    "max_tokens": 10000,
+    "verifier_max_tokens": 10000,
+    "verifier_accept_on_unparsed": true,
+    "verifier_sees_solver_output": false
+  },
+  "git_hash": "dddd3ea2d833bd1b1098b0ee9891eca3ad41ffa6",
+  "seed": 42,
+  "out_path": "results/counterfactual_loop_gemini-3.1-flash-lite.jsonl"
+}

@@ -1,0 +1,20 @@
+{
+  "config": {
+    "solver_model": "meta-llama/Llama-3.1-8B-Instruct",
+    "verifier_model": "meta-llama/Llama-3.1-8B-Instruct",
+    "checker_model": "meta-llama/Llama-3.1-8B-Instruct",
+    "name": "llama3.1-8b-loop",
+    "dataset": "gsm8k",
+    "n": 200,
+    "seed": 42,
+    "max_loops": 5,
+    "temp": null,
+    "max_tokens": 10000,
+    "verifier_max_tokens": 10000,
+    "verifier_accept_on_unparsed": true,
+    "verifier_sees_solver_output": false
+  },
+  "git_hash": "dddd3ea2d833bd1b1098b0ee9891eca3ad41ffa6",
+  "seed": 42,
+  "out_path": "results/counterfactual_loop_llama3.1-8b-loop.jsonl"
+}
