@@ -21,7 +21,9 @@ from shared_utils.record_model import reconstruct_records
 from shared_utils.models.anthropic_model import AnthropicModel
 
 DEFAULT_CONFIG = "counterfactual_config.json"
-GRADER_MODEL = "claude-haiku-4-5"
+# Grader must be INDEPENDENT of every solver under test; haiku is itself a solver (haiku4.5-loop),
+# so grading with it would be self-grading. Use the larger, out-of-set Opus for objective Val_obj.
+GRADER_MODEL = "claude-opus-4-8"
 
 
 def build_prompt(question: str, candidate: str) -> str:
@@ -75,7 +77,10 @@ def _grade_candidate(model: AnthropicModel, question: str, target: int, candidat
     err = ""
     for _ in range(3):
         try:
-            grade = _parse_grade(model.inference(conversation, max_tokens=512, temperature=0.0))
+            # temperature omitted (None): Opus 4.8 rejects an explicit temperature. max_tokens is
+            # generous because the grader asks for step-by-step work before the JSON -- a truncated
+            # reply has no closing brace and parses as ungraded.
+            grade = _parse_grade(model.inference(conversation, max_tokens=1024, temperature=None))
             solved = _to_int(grade.get("solved_answer"))
             minimal = bool(grade.get("minimal_edit"))
             solves = solved is not None and solved == target

@@ -1439,3 +1439,846 @@ C:\Users\Frederik\.conda\envs\llm_project\Lib\site-packages\bitsandbytes\autogra
 [transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
 [transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
 [transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  61%|######1   | 122/200 [10:23:47<6:02:18, 278.70s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  62%|######1   | 123/200 [10:27:22<5:33:14, 259.66s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  62%|######2   | 124/200 [10:34:27<6:31:48, 309.32s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  62%|######2   | 125/200 [10:38:51<6:09:32, 295.63s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  63%|######3   | 126/200 [10:40:51<4:59:37, 242.94s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  64%|######3   | 127/200 [10:51:17<7:15:26, 357.90s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  64%|######4   | 128/200 [10:59:35<7:59:56, 399.94s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  64%|######4   | 129/200 [11:02:44<6:38:21, 336.64s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  65%|######5   | 130/200 [11:07:07<6:07:09, 314.71s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  66%|######5   | 131/200 [11:11:23<5:41:28, 296.93s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  66%|######6   | 132/200 [11:20:24<6:59:34, 370.21s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  66%|######6   | 133/200 [11:27:57<7:21:14, 395.14s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  67%|######7   | 134/200 [11:33:27<6:52:54, 375.37s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  68%|######7   | 135/200 [11:38:58<6:32:23, 362.21s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  68%|######8   | 136/200 [11:45:44<6:40:23, 375.37s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  68%|######8   | 137/200 [11:52:23<6:41:37, 382.49s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  69%|######9   | 138/200 [11:58:01<6:21:15, 368.96s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  70%|######9   | 139/200 [12:05:42<6:43:18, 396.70s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  70%|#######   | 140/200 [12:10:29<6:03:42, 363.70s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  70%|#######   | 141/200 [12:14:32<5:22:01, 327.48s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  71%|#######1  | 142/200 [12:22:37<6:02:12, 374.70s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  72%|#######1  | 143/200 [12:26:20<5:12:53, 329.36s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  72%|#######2  | 144/200 [12:31:09<4:56:06, 317.26s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  72%|#######2  | 145/200 [12:36:43<4:55:14, 322.08s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  73%|#######3  | 146/200 [12:49:25<6:48:38, 454.05s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  74%|#######3  | 147/200 [12:58:49<7:10:11, 487.01s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  74%|#######4  | 148/200 [13:04:59<6:31:38, 451.90s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  74%|#######4  | 149/200 [13:10:36<5:55:00, 417.65s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  75%|#######5  | 150/200 [13:14:53<5:07:48, 369.38s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  76%|#######5  | 151/200 [13:19:04<4:32:33, 333.74s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  76%|#######6  | 152/200 [13:22:10<3:51:43, 289.65s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  76%|#######6  | 153/200 [13:27:15<3:50:30, 294.27s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  77%|#######7  | 154/200 [13:28:33<2:55:43, 229.20s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  78%|#######7  | 155/200 [13:33:54<3:12:37, 256.83s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  78%|#######8  | 156/200 [13:40:45<3:42:07, 302.91s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  78%|#######8  | 157/200 [13:46:37<3:47:44, 317.79s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  79%|#######9  | 158/200 [13:53:18<3:59:49, 342.61s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  80%|#######9  | 159/200 [13:58:13<3:44:27, 328.47s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  80%|########  | 160/200 [14:01:47<3:16:04, 294.12s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  80%|########  | 161/200 [14:06:28<3:08:35, 290.14s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  81%|########1 | 162/200 [14:11:04<3:01:01, 285.83s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  82%|########1 | 163/200 [14:17:42<3:17:01, 319.51s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  82%|########2 | 164/200 [14:24:26<3:27:02, 345.07s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  82%|########2 | 165/200 [14:28:15<3:00:49, 309.97s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  83%|########2 | 166/200 [14:35:25<3:16:07, 346.10s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  84%|########3 | 167/200 [14:43:39<3:34:48, 390.55s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  84%|########4 | 168/200 [14:49:41<3:23:38, 381.83s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  84%|########4 | 169/200 [14:56:04<3:17:33, 382.37s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  85%|########5 | 170/200 [15:00:24<2:52:49, 345.66s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  86%|########5 | 171/200 [15:03:16<2:21:54, 293.62s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  86%|########6 | 172/200 [15:09:00<2:24:02, 308.66s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  86%|########6 | 173/200 [15:14:29<2:21:37, 314.74s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  87%|########7 | 174/200 [15:22:11<2:35:28, 358.79s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  88%|########7 | 175/200 [15:24:10<1:59:34, 287.00s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  88%|########8 | 176/200 [15:27:11<1:42:02, 255.09s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  88%|########8 | 177/200 [15:32:19<1:43:51, 270.96s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  89%|########9 | 178/200 [15:37:45<1:45:28, 287.66s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  90%|########9 | 179/200 [15:45:46<2:00:58, 345.66s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  90%|######### | 180/200 [15:50:38<1:49:49, 329.50s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  90%|######### | 181/200 [15:55:34<1:41:09, 319.47s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  91%|#########1| 182/200 [16:00:46<1:35:09, 317.19s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  92%|#########1| 183/200 [16:07:29<1:37:10, 342.95s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  92%|#########2| 184/200 [16:11:32<1:23:24, 312.78s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  92%|#########2| 185/200 [16:16:00<1:14:52, 299.51s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  93%|#########3| 186/200 [16:23:47<1:21:34, 349.61s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  94%|#########3| 187/200 [16:26:09<1:02:14, 287.29s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  94%|#########3| 188/200 [16:28:15<47:47, 238.95s/it]  [transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  94%|#########4| 189/200 [16:32:48<45:41, 249.23s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  95%|#########5| 190/200 [16:37:13<42:20, 254.08s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  96%|#########5| 191/200 [16:39:14<32:05, 213.94s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  96%|#########6| 192/200 [16:40:32<23:06, 173.29s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  96%|#########6| 193/200 [16:47:08<27:59, 239.98s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  97%|#########7| 194/200 [16:51:50<25:16, 252.73s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  98%|#########7| 195/200 [16:57:47<23:40, 284.06s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  98%|#########8| 196/200 [17:01:47<18:02, 270.71s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  98%|#########8| 197/200 [17:09:50<16:43, 334.37s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct:  99%|#########9| 198/200 [17:10:52<08:25, 252.71s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct: 100%|#########9| 199/200 [17:19:58<05:40, 340.61s/it][transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+[transformers] Setting `pad_token_id` to `eos_token_id`:128001 for open-end generation.
+cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct: 100%|##########| 200/200 [17:26:03<00:00, 348.14s/it]cf_loop | s=meta-llama/Llama-3.1-8B-Instruct v=meta-llama/Llama-3.1-8B-Instruct c=meta-llama/Llama-3.1-8B-Instruct: 100%|##########| 200/200 [17:26:03<00:00, 313.82s/it]
+cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:   0%|          | 0/200 [00:00<?, ?it/s]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:   0%|          | 1/200 [00:23<1:18:33, 23.68s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:   1%|1         | 2/200 [00:36<57:57, 17.56s/it]  cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:   2%|1         | 3/200 [00:42<39:41, 12.09s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:   2%|2         | 4/200 [00:57<43:00, 13.16s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:   2%|2         | 5/200 [01:06<38:24, 11.82s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:   3%|3         | 6/200 [01:17<37:14, 11.52s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:   4%|3         | 7/200 [01:38<46:41, 14.52s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:   4%|4         | 8/200 [01:54<47:53, 14.96s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:   4%|4         | 9/200 [01:59<38:08, 11.98s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:   5%|5         | 10/200 [02:08<34:26, 10.88s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:   6%|5         | 11/200 [02:29<44:49, 14.23s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:   6%|6         | 12/200 [02:40<41:07, 13.12s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:   6%|6         | 13/200 [03:06<52:36, 16.88s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:   7%|7         | 14/200 [03:24<53:23, 17.22s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:   8%|7         | 15/200 [03:30<43:00, 13.95s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:   8%|8         | 16/200 [03:38<37:31, 12.23s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:   8%|8         | 17/200 [03:48<34:52, 11.44s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:   9%|9         | 18/200 [03:52<28:07,  9.27s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  10%|9         | 19/200 [03:58<24:57,  8.27s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  10%|#         | 20/200 [04:16<33:59, 11.33s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  10%|#         | 21/200 [04:22<28:32,  9.57s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  11%|#1        | 22/200 [04:28<25:29,  8.59s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  12%|#1        | 23/200 [04:48<35:15, 11.95s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  12%|#2        | 24/200 [04:58<33:14, 11.33s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  12%|#2        | 25/200 [05:20<42:42, 14.65s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  13%|#3        | 26/200 [05:27<35:11, 12.13s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  14%|#3        | 27/200 [05:43<38:28, 13.34s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  14%|#4        | 28/200 [06:09<49:04, 17.12s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  14%|#4        | 29/200 [06:30<52:05, 18.28s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  15%|#5        | 30/200 [06:42<46:58, 16.58s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  16%|#5        | 31/200 [06:47<36:57, 13.12s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  16%|#6        | 32/200 [06:53<30:19, 10.83s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  16%|#6        | 33/200 [06:59<25:57,  9.33s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  17%|#7        | 34/200 [07:17<33:26, 12.09s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  18%|#7        | 35/200 [07:44<45:12, 16.44s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  18%|#8        | 36/200 [08:00<45:07, 16.51s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  18%|#8        | 37/200 [08:07<37:02, 13.63s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  19%|#9        | 38/200 [08:24<39:09, 14.51s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  20%|#9        | 39/200 [08:29<31:24, 11.70s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  20%|##        | 40/200 [08:37<28:04, 10.53s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  20%|##        | 41/200 [08:56<34:45, 13.11s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  21%|##1       | 42/200 [09:01<28:16, 10.74s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  22%|##1       | 43/200 [09:06<23:39,  9.04s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  22%|##2       | 44/200 [09:14<22:09,  8.52s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  22%|##2       | 45/200 [09:34<31:15, 12.10s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  23%|##3       | 46/200 [09:40<26:21, 10.27s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  24%|##3       | 47/200 [09:45<22:29,  8.82s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  24%|##4       | 48/200 [09:51<19:44,  7.79s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  24%|##4       | 49/200 [09:57<18:45,  7.46s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  25%|##5       | 50/200 [10:08<20:50,  8.34s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  26%|##5       | 51/200 [10:17<21:11,  8.53s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  26%|##6       | 52/200 [10:30<24:06,  9.78s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  26%|##6       | 53/200 [10:51<32:31, 13.28s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  27%|##7       | 54/200 [10:57<26:58, 11.09s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  28%|##7       | 55/200 [11:07<25:41, 10.63s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  28%|##8       | 56/200 [11:25<31:04, 12.95s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  28%|##8       | 57/200 [11:30<25:19, 10.62s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  29%|##9       | 58/200 [11:37<22:51,  9.66s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  30%|##9       | 59/200 [11:50<24:22, 10.37s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  30%|###       | 60/200 [11:55<20:33,  8.81s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  30%|###       | 61/200 [12:00<18:15,  7.88s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  31%|###1      | 62/200 [12:06<16:39,  7.24s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  32%|###1      | 63/200 [12:11<14:53,  6.52s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  32%|###2      | 64/200 [12:35<26:59, 11.91s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  32%|###2      | 65/200 [12:56<32:51, 14.60s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  33%|###3      | 66/200 [13:02<26:30, 11.87s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  34%|###3      | 67/200 [13:10<24:04, 10.86s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  34%|###4      | 68/200 [13:23<25:16, 11.49s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  34%|###4      | 69/200 [13:30<22:00, 10.08s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  35%|###5      | 70/200 [13:53<30:17, 13.98s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  36%|###5      | 71/200 [14:18<37:05, 17.26s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  36%|###6      | 72/200 [14:39<39:12, 18.38s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  36%|###6      | 73/200 [14:54<36:33, 17.28s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  37%|###7      | 74/200 [15:13<37:47, 18.00s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  38%|###7      | 75/200 [15:19<29:27, 14.14s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  38%|###8      | 76/200 [15:34<29:44, 14.39s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  38%|###8      | 77/200 [15:45<27:50, 13.58s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  39%|###9      | 78/200 [15:56<25:45, 12.66s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  40%|###9      | 79/200 [16:07<24:33, 12.18s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  40%|####      | 80/200 [16:12<20:13, 10.11s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  40%|####      | 81/200 [16:26<22:29, 11.34s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  41%|####1     | 82/200 [16:33<19:34,  9.95s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  42%|####1     | 83/200 [16:41<18:02,  9.25s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  42%|####2     | 84/200 [16:47<16:05,  8.32s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  42%|####2     | 85/200 [16:52<14:24,  7.52s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  43%|####3     | 86/200 [16:59<13:38,  7.18s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  44%|####3     | 87/200 [17:07<14:01,  7.45s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  44%|####4     | 88/200 [17:15<14:05,  7.55s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  44%|####4     | 89/200 [17:51<29:55, 16.17s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  45%|####5     | 90/200 [18:05<28:31, 15.56s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  46%|####5     | 91/200 [18:24<30:07, 16.58s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  46%|####6     | 92/200 [18:34<26:24, 14.67s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  46%|####6     | 93/200 [18:50<26:35, 14.91s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  47%|####6     | 94/200 [19:19<34:06, 19.31s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  48%|####7     | 95/200 [19:28<28:06, 16.06s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  48%|####8     | 96/200 [19:34<22:35, 13.03s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  48%|####8     | 97/200 [19:44<20:52, 12.16s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  49%|####9     | 98/200 [20:00<22:53, 13.46s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  50%|####9     | 99/200 [20:06<18:50, 11.20s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  50%|#####     | 100/200 [20:11<15:33,  9.33s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  50%|#####     | 101/200 [20:17<13:37,  8.26s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  51%|#####1    | 102/200 [20:50<25:26, 15.57s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  52%|#####1    | 103/200 [21:03<23:50, 14.74s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  52%|#####2    | 104/200 [21:09<19:23, 12.12s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  52%|#####2    | 105/200 [21:31<23:59, 15.15s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  53%|#####3    | 106/200 [21:44<22:42, 14.50s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  54%|#####3    | 107/200 [21:57<21:50, 14.09s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  54%|#####4    | 108/200 [22:13<22:34, 14.72s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  55%|#####4    | 109/200 [22:22<19:52, 13.10s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  55%|#####5    | 110/200 [22:47<24:47, 16.53s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  56%|#####5    | 111/200 [22:53<19:54, 13.42s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  56%|#####6    | 112/200 [23:00<16:49, 11.47s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  56%|#####6    | 113/200 [23:11<16:26, 11.34s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  57%|#####6    | 114/200 [23:31<19:56, 13.91s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  57%|#####7    | 115/200 [23:46<20:18, 14.34s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  58%|#####8    | 116/200 [23:59<19:13, 13.73s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  58%|#####8    | 117/200 [24:11<18:16, 13.21s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  59%|#####8    | 118/200 [24:17<15:07, 11.07s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  60%|#####9    | 119/200 [24:24<13:18,  9.86s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  60%|######    | 120/200 [24:30<11:42,  8.79s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  60%|######    | 121/200 [24:39<11:38,  8.84s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  61%|######1   | 122/200 [24:59<15:53, 12.22s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  62%|######1   | 123/200 [25:06<13:43, 10.70s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  62%|######2   | 124/200 [25:37<21:08, 16.70s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  62%|######2   | 125/200 [25:59<23:04, 18.46s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  63%|######3   | 126/200 [26:06<18:13, 14.78s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  64%|######3   | 127/200 [26:12<14:52, 12.23s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  64%|######4   | 128/200 [26:48<23:09, 19.30s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  64%|######4   | 129/200 [27:01<20:41, 17.48s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  65%|######5   | 130/200 [27:18<20:19, 17.42s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  66%|######5   | 131/200 [27:24<16:04, 13.98s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  66%|######6   | 132/200 [27:40<16:19, 14.40s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  66%|######6   | 133/200 [28:01<18:20, 16.43s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  67%|######7   | 134/200 [28:10<15:37, 14.20s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  68%|######7   | 135/200 [28:37<19:40, 18.16s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  68%|######8   | 136/200 [28:50<17:35, 16.49s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  68%|######8   | 137/200 [29:12<19:08, 18.22s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  69%|######9   | 138/200 [29:23<16:42, 16.17s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  70%|######9   | 139/200 [29:34<14:48, 14.56s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  70%|#######   | 140/200 [29:47<13:56, 13.95s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  70%|#######   | 141/200 [30:01<13:47, 14.02s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  71%|#######1  | 142/200 [30:12<12:47, 13.23s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  72%|#######1  | 143/200 [30:24<12:10, 12.82s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  72%|#######2  | 144/200 [30:29<09:45, 10.45s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  72%|#######2  | 145/200 [30:39<09:27, 10.31s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  73%|#######3  | 146/200 [30:55<10:54, 12.12s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  74%|#######3  | 147/200 [31:01<09:00, 10.19s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  74%|#######4  | 148/200 [31:27<12:48, 14.78s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  74%|#######4  | 149/200 [31:34<10:35, 12.46s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  75%|#######5  | 150/200 [31:52<11:52, 14.26s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  76%|#######5  | 151/200 [32:10<12:37, 15.47s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  76%|#######6  | 152/200 [32:29<13:02, 16.31s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  76%|#######6  | 153/200 [32:36<10:45, 13.73s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  77%|#######7  | 154/200 [32:45<09:23, 12.26s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  78%|#######7  | 155/200 [32:55<08:43, 11.63s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  78%|#######8  | 156/200 [33:11<09:25, 12.85s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  78%|#######8  | 157/200 [33:17<07:43, 10.77s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  79%|#######9  | 158/200 [33:28<07:35, 10.85s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  80%|#######9  | 159/200 [33:38<07:15, 10.61s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  80%|########  | 160/200 [33:47<06:38,  9.96s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  80%|########  | 161/200 [33:53<05:47,  8.92s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  81%|########1 | 162/200 [33:58<04:56,  7.81s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  82%|########1 | 163/200 [34:18<06:58, 11.31s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  82%|########2 | 164/200 [34:23<05:47,  9.65s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  82%|########2 | 165/200 [34:30<05:07,  8.80s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  83%|########2 | 166/200 [34:40<05:12,  9.19s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  84%|########3 | 167/200 [35:02<07:07, 12.97s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  84%|########4 | 168/200 [35:10<06:01, 11.29s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  84%|########4 | 169/200 [35:31<07:23, 14.32s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  85%|########5 | 170/200 [35:36<05:50, 11.68s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  86%|########5 | 171/200 [35:48<05:37, 11.62s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  86%|########6 | 172/200 [36:13<07:21, 15.76s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  86%|########6 | 173/200 [36:30<07:13, 16.05s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  87%|########7 | 174/200 [36:54<08:02, 18.55s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  88%|########7 | 175/200 [37:01<06:14, 14.97s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  88%|########8 | 176/200 [37:08<05:04, 12.68s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  88%|########8 | 177/200 [37:24<05:13, 13.63s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  89%|########9 | 178/200 [37:32<04:20, 11.83s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  90%|########9 | 179/200 [38:01<05:57, 17.01s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  90%|######### | 180/200 [38:17<05:33, 16.70s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  90%|######### | 181/200 [38:27<04:40, 14.79s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  91%|#########1| 182/200 [38:49<05:01, 16.75s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  92%|#########1| 183/200 [39:09<05:04, 17.91s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  92%|#########2| 184/200 [39:20<04:13, 15.82s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  92%|#########2| 185/200 [39:39<04:11, 16.77s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  93%|#########3| 186/200 [39:45<03:09, 13.56s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  94%|#########3| 187/200 [39:52<02:28, 11.46s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  94%|#########3| 188/200 [39:58<01:56,  9.74s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  94%|#########4| 189/200 [40:03<01:34,  8.55s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  95%|#########5| 190/200 [40:17<01:39,  9.97s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  96%|#########5| 191/200 [40:23<01:19,  8.85s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  96%|#########6| 192/200 [40:31<01:08,  8.52s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  96%|#########6| 193/200 [40:40<01:01,  8.77s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  97%|#########7| 194/200 [40:46<00:47,  7.98s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  98%|#########7| 195/200 [40:53<00:39,  7.80s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  98%|#########8| 196/200 [41:12<00:43, 10.91s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  98%|#########8| 197/200 [41:18<00:28,  9.52s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5:  99%|#########9| 198/200 [41:28<00:19,  9.83s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5: 100%|#########9| 199/200 [41:41<00:10, 10.65s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5: 100%|##########| 200/200 [41:48<00:00,  9.49s/it]cf_loop | s=claude-haiku-4-5 v=claude-haiku-4-5 c=claude-haiku-4-5: 100%|##########| 200/200 [41:48<00:00, 12.54s/it]
