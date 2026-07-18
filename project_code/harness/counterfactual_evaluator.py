@@ -5,7 +5,7 @@ import sys
 
 from harness.io_jsonl import read_records, read_meta
 from harness.cf_config import default_out_path, load_configs, _short
-from harness.haiku_grader import grades_path
+from harness.opus_grader import grades_path
 from shared_utils.record_model import reconstruct_records
 
 DEFAULT_CONFIG = "counterfactual_config.json"

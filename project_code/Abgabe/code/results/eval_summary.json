@@ -1,0 +1,153 @@
+{
+  "runs": [
+    {
+      "name": "qwen3.5-4b-loop",
+      "out_path": "results/counterfactual_loop_qwen3.5-4b-loop.jsonl",
+      "exists": true,
+      "has_meta": true,
+      "n_items": 48,
+      "n_finished": 47,
+      "n_incomplete": 1,
+      "n_gen_fail": 0,
+      "expected_n": 200,
+      "complete": false,
+      "val_rate": 0.8297872340425532,
+      "val_ci": [
+        0.6985994892711489,
+        0.9111374190873607
+      ],
+      "gen_rate": 1.0,
+      "gen_ci": [
+        0.9244398288016114,
+        1.0
+      ],
+      "original_acc": 0.8936170212765957,
+      "accept_rate": 0.9574468085106383,
+      "accept_ci": [
+        0.8575121280614056,
+        0.9882519706294303
+      ],
+      "verifier_val_agreement": 0.8222222222222222,
+      "mean_iters_to_accept": 2.1777777777777776,
+      "loop_depth_hist": {
+        "2": 7,
+        "1": 22,
+        "4": 10,
+        "none": 2,
+        "3": 4,
+        "5": 2
+      },
+      "val_at_k": {
+        "1": 0.425531914893617,
+        "2": 0.5319148936170213,
+        "3": 0.6170212765957447,
+        "4": 0.7659574468085106,
+        "5": 0.7872340425531915
+      },
+      "n_graded": 47,
+      "val_obj_rate": 0.425531914893617,
+      "val_obj_ci": [
+        0.2951341600182584,
+        0.5671833122878847
+      ],
+      "first_val_obj_rate": 0.2765957446808511,
+      "first_val_obj_ci": [
+        0.16936405991152936,
+        0.41758835700689967
+      ],
+      "solve_to_target_rate": 0.6595744680851063,
+      "minimal_rate": 0.425531914893617,
+      "edit_dist_mean": 0.7565882476792336,
+      "edit_dist_median": 0.982532751091703
+    },
+    {
+      "name": "phi4-loop",
+      "out_path": "results/counterfactual_loop_phi4-loop.jsonl",
+      "exists": false,
+      "has_meta": false,
+      "n_items": 0,
+      "n_finished": 0,
+      "n_incomplete": 0,
+      "n_gen_fail": 0,
+      "expected_n": 200,
+      "complete": false,
+      "val_rate": 0.0,
+      "val_ci": [
+        0.0,
+        0.0
+      ],
+      "gen_rate": 0.0,
+      "gen_ci": [
+        0.0,
+        0.0
+      ],
+      "original_acc": null,
+      "accept_rate": 0.0,
+      "accept_ci": [
+        0.0,
+        0.0
+      ],
+      "verifier_val_agreement": null,
+      "mean_iters_to_accept": null,
+      "loop_depth_hist": {},
+      "val_at_k": {},
+      "n_graded": 0,
+      "val_obj_rate": null,
+      "val_obj_ci": null,
+      "first_val_obj_rate": null,
+      "first_val_obj_ci": null,
+      "solve_to_target_rate": null,
+      "minimal_rate": null,
+      "edit_dist_mean": null,
+      "edit_dist_median": null
+    }
+  ],
+  "model_summary": [
+    {
+      "model": "phi4-loop",
+      "solve_acc": null,
+      "val_obj_single": null,
+      "val_obj_single_ci": null,
+      "val_obj_loop": null,
+      "val_obj_loop_ci": null,
+      "solve_to_target_rate": null,
+      "minimal_rate": null,
+      "edit_dist_mean": null,
+      "accept_rate": 0.0,
+      "verifier_val_agreement": null,
+      "delta_val": null,
+      "delta_ci": [
+        0.0,
+        0.0
+      ],
+      "mcnemar_p": 1.0,
+      "n_pairs": 0
+    },
+    {
+      "model": "qwen3.5-4b-loop",
+      "solve_acc": null,
+      "val_obj_single": 0.2765957446808511,
+      "val_obj_single_ci": [
+        0.16936405991152936,
+        0.41758835700689967
+      ],
+      "val_obj_loop": 0.425531914893617,
+      "val_obj_loop_ci": [
+        0.2951341600182584,
+        0.5671833122878847
+      ],
+      "solve_to_target_rate": 0.6595744680851063,
+      "minimal_rate": 0.425531914893617,
+      "edit_dist_mean": 0.7565882476792336,
+      "accept_rate": 0.9574468085106383,
+      "verifier_val_agreement": 0.8222222222222222,
+      "delta_val": 0.14893617021276595,
+      "delta_ci": [
+        0.04715011106052701,
+        0.2507222293650049
+      ],
+      "mcnemar_p": 0.015625,
+      "n_pairs": 47
+    }
+  ]
+}

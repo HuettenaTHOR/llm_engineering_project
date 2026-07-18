@@ -1,0 +1,20 @@
+{
+  "config": {
+    "solver_model": "claude-haiku-4-5",
+    "verifier_model": "claude-haiku-4-5",
+    "checker_model": "claude-haiku-4-5",
+    "name": "haiku4.5-loop",
+    "dataset": "gsm8k",
+    "n": 200,
+    "seed": 42,
+    "max_loops": 5,
+    "temp": null,
+    "max_tokens": 10000,
+    "verifier_max_tokens": 10000,
+    "verifier_accept_on_unparsed": true,
+    "verifier_sees_solver_output": false
+  },
+  "git_hash": "c1309e4904373fd17077e3263abde46970762acd",
+  "seed": 42,
+  "out_path": "results/counterfactual_loop_haiku4.5-loop.jsonl"
+}

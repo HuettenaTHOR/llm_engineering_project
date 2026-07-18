@@ -1,5 +1,12 @@
 # Agentic Counterfactual Reasoning Benchmark
 
+## TL;DR
+- **Research question:** can a solver + verifier agentic loop recover the counterfactual-generation gap that single-shot generation loses on GSM8K?
+- **How to run:** see §5 below.
+- **Hyperparameters**: see §6 below.
+- **how the prompting/loop works**: see §2 below / the [design doc](https://docs.google.com/document/d/1LSS8P72VihsTrwrhPN6JTTawOsQ5-5cYRF14Z679eUo/edit?tab=t.0).
+
+
 ## Docs:
 https://docs.google.com/document/d/1LSS8P72VihsTrwrhPN6JTTawOsQ5-5cYRF14Z679eUo/edit?tab=t.0
 
@@ -7,10 +14,7 @@ A study harness testing whether a **solver + verifier agentic loop** recovers th
 counterfactual-generation gap that single-shot generation loses on GSM8K.
 
 Based on *"Can LLMs Explain Themselves Counterfactually?"*
-([arXiv:2502.18156](https://arxiv.org/abs/2502.18156), EMNLP 2025). Full design in
-[`docs/DESIGN.md`](docs/DESIGN.md); the locked evaluation spec is in
-[`docs/RQ_EVALUATION_PLAN.md`](docs/RQ_EVALUATION_PLAN.md).
-
+([arXiv:2502.18156](https://arxiv.org/abs/2502.18156), EMNLP 2025). 
 ---
 
 ## 1. The research question
@@ -22,7 +26,7 @@ It is a conditional chain — each link is measured separately:
 
 | Link | Claim | Measured by |
 |---|---|---|
-| **P1** | the model solves GSM8K well | **solve accuracy** (gate; interpret CF results only for models above the bar, ≈60%) |
+| **P1** | the model solves GSM8K well | **solve accuracy** |
 | **P2** | its *single-shot* CF generation is bad | **single-shot `Val_obj`** (`max_loops=1`) |
 | **T**  | the loop beats single-shot | **ΔVal = `Val_obj`(loop) − `Val_obj`(single)**, paired |
 
@@ -124,6 +128,9 @@ on stop: checker re-solves candidate -> final_val
 `max_loops: 1` is therefore the **single-shot baseline** (one CF generation, graded; the verdict
 cannot change the outcome). `max_loops: 3` is the **agentic loop**.
 
+### 2.6 Post-hoc objective grading (Opus 4.8)
+To optain the **primary validity** metric `Val_obj`, the final candidate is sent to the Opus 4.8 API to resolve it and check whether the answer is `y_CE` and whether the edit is minimal. This is the **objective** grading signal, independent of the local checker. It is the only metric that answers the research question (T) — the local checker is only a secondary cross-check.
+
 ---
 
 ## 3. Setup
@@ -157,7 +164,7 @@ hf auth login          # paste a read token from https://huggingface.co/settings
 
 ### Objective grading — Anthropic key (required for `Val_obj`)
 
-The post-hoc grader calls Claude Haiku:
+The post-hoc grader calls Claude Opus:
 
 ```powershell
 [Environment]::SetEnvironmentVariable('ANTHROPIC_API_KEY', '<your key>', 'User')
@@ -186,7 +193,7 @@ families are wired with the correct chat template / thinking behavior in `shared
 | **Gemma 4** | `google/gemma-4-{E2B,E4B}-it` | Thinking models |
 | **Phi-4** | `microsoft/Phi-4-mini-instruct` (3.8B), `microsoft/phi-4` (14B) | Standard chat |
 | **Mistral** | `mistralai/Ministral-3-{3B,8B}-Instruct-2512` | Native FP8 checkpoint |
-| **Anthropic** | `claude-haiku-4-5` | API grader (needs `ANTHROPIC_API_KEY`) |
+| **Anthropic** | `claude-opus-4.8` | API grader (needs `ANTHROPIC_API_KEY`) |
 | **OpenRouter** | `mistralai/mistral-small-2603`, `google/gemini-3.1-flash-lite`, `openai/gpt-5.4-nano`, `openai/gpt-5.6-luna`, `deepseek/deepseek-v4-flash` | Hosted API models via OpenRouter (needs `OPENROUTER_API_KEY`) |
 
 **16 GB VRAM fit:** models whose bf16 footprint overflows the card auto-load 8-bit (near-lossless at
@@ -204,20 +211,17 @@ runs (one shared model) fit; cross-model runs pairing two large models do not.
 Run in order. Every step is **resumable** (killing a process never loses a completed item/step).
 
 ```bash
-# 0. one-time: log in for Llama (§3), set ANTHROPIC_API_KEY (§3)
+# 0. one-time: log in (huggingface-cli login) for Llama (§3), set ANTHROPIC_API_KEY (e.g. in .env file) (§3)
 
 # 1. P1 gate + loop-vs-single diagnostic on plain GSM8K solving (not CF generation yet):
-#    8 runs = 4 models x {single_shot, verifier_loop max_loops=5}, self-verifier. The single_shot
-#    row IS the P1 solve-accuracy gate; the paired verifier_loop row answers "does a 5-iteration
-#    agentic loop improve on directly using the model's output?" for that model.
+# Question: can the loop improve the model's single-shot solve accuracy? (not the research question, but a interesting diagnostic)
 python -m harness.runner benchmark_config.json
-#    (ad-hoc single-model spot check instead: `python -m harness.run_base_test --model <id> --strategy single_shot --n 200`)
 
 # 2. P2 + T — the 8-run CF matrix (4 models x {single, loop}), self-verifier.
 python -m harness.counterfactual_runner counterfactual_config.json
 
-# 3. Objective grading — one Haiku call per final candidate -> results/<run>.grades.jsonl (~$2-3).
-python -m harness.haiku_grader counterfactual_config.json
+# 3. Objective grading — one Opus call per final candidate -> results/<run>.grades.jsonl 
+python -m harness.opus_grader counterfactual_config.json
 
 # 4. Metrics — Val_obj, ΔVal, McNemar, P1 join table -> results/eval_summary.json + stdout tables.
 python -m harness.counterfactual_evaluator counterfactual_config.json
@@ -231,7 +235,7 @@ python -m harness.counterfactual_evaluator counterfactual_config.json
 
 Top-level keys are shared defaults; each `runs[]` entry sets its three role models and can override
 any default (e.g. `max_loops`). Unknown keys are ignored. The unified study config lists one
-self-verifier loop run per solver (the four local study solvers plus Haiku and the hosted OpenRouter
+self-verifier loop run per solver (the four local study solvers plus Opus and the hosted OpenRouter
 models). Set a run's `max_loops: 1` to obtain that model's single-shot baseline for the paired ΔVal.
 
 | Parameter | Study value | Meaning |
@@ -241,7 +245,7 @@ models). Set a run's `max_loops: 1` to obtain that model's single-shot baseline 
 | `dataset` | `gsm8k` | Only `gsm8k` is supported |
 | `n` | `200` | Items from the seeded subset |
 | `seed` | `42` | RNG + subset + per-item offset + per-item generation seed |
-| `max_loops` | `1` (single) / `3` (loop) | Max solver→verifier iterations; `1` = single-shot baseline |
+| `max_loops` | `1` (single) / `5` (loop) | Max solver→verifier iterations; `1` = single-shot baseline |
 | `temp` | `null` | **`null` = use each model's own `generation_config.json` defaults.** A float forces that temperature (`0.0` = greedy) |
 | `max_tokens` / `verifier_max_tokens` | `10000` | Generation caps (high so thinking models don't truncate before their answer/verdict; EOS still stops short answers) |
 | `verifier_accept_on_unparsed` | `true` | Unparseable verdict → accept (early-stop) rather than reject. The checker grades independently, so over-accepting is non-destructive |
@@ -289,20 +293,20 @@ Llama rows are ordered last so a missing HF login (§3) doesn't block the other 
 |---|---|---|
 | `results/counterfactual_loop_<name>.jsonl` | CF runner | **one line per step** (`solve` + each `cf`); resumable trace |
 | `results/counterfactual_loop_<name>.jsonl.meta.json` | CF runner | exact config, git hash, seed |
-| `results/counterfactual_loop_<name>.grades.jsonl` | Haiku grader | one line per graded item (see below) |
+| `results/counterfactual_loop_<name>.grades.jsonl` | Opus grader | one line per graded item (see below) |
 | `results/solve_single_shot_<model>.jsonl` | solve CLI | P1 solve-baseline trace |
 | `results/eval_summary.json` | evaluator | per-run metrics + per-model P1→P2→T summary |
 
 `grades.jsonl` line: `{item_id, solved_answer, solves_to_target, minimal_edit, valid_obj,
 edit_distance, reason}` — where `valid_obj = solves_to_target AND minimal_edit`, and
-`solves_to_target` is computed in code (Haiku is never trusted to know the target).
+`solves_to_target` is computed in code (Opus is never trusted to know the target).
 
 ### 7.2 Metrics
 
 | Metric | Definition | Role |
 |---|---|---|
 | **solve accuracy** | `f(x) == gold` on the original problem | **P1 gate** |
-| **`Val_obj`** | `frac(valid_obj)` — Haiku re-solves to `y_CE` **and** calls it a minimal edit | **primary validity** |
+| **`Val_obj`** | `frac(valid_obj)` — Opus re-solves to `y_CE` **and** calls it a minimal edit | **primary validity** |
 | `solve%` / `minimal%` | the two `Val_obj` components, reported separately | diagnostics |
 | `edit_distance` | `1 − difflib.SequenceMatcher.ratio(question, candidate)` | minimality cross-check |
 | **ΔVal** | `Val_obj(loop) − Val_obj(single)`, paired on shared items, exact **McNemar** p | **answers T** |
@@ -321,8 +325,7 @@ agreement`. That table *is* the answer to the RQ, per model.
 
 ## 8. Viewing results
 
-A zero-dependency local web UI browses every `results/*.jsonl` trace, including full per-iteration
-solver/verifier output:
+A zero-dependency local web UI browses every `results/*.jsonl` trace, including full per-iteration solver/verifier output. Note that the results are already in the `results/` folder, so you can skip the previous steps if you just want to view them in detail. Rerunning can take a long time and cost money if you are using the Opus API for grading.
 
 ```bash
 cd harness
@@ -337,7 +340,7 @@ python webui.py --results ../results        # http://127.0.0.1:8000
 harness/
   counterfactual_runner.py     # primary: 3-role step-streaming resumable runner
   counterfactual_evaluator.py  # metrics: Val_obj, ΔVal/McNemar, P1 join, per-model table
-  haiku_grader.py              # post-hoc objective grader -> *.grades.jsonl
+  opus_grader.py               # post-hoc objective grader -> *.grades.jsonl
   cf_config.py                 # CFRunConfig + counterfactual_config.json loader
   run_base_test.py             # solve-task CLI (P1 gate; single_shot / verifier_loop)
   runner.py                    # config-driven solve runner (RunConfig)
@@ -355,3 +358,7 @@ results/                       # *.jsonl traces + *.grades.jsonl + *.meta.json s
 counterfactual_config.json         # unified CF study matrix (all solvers x self-verifier loop)
 benchmark_config.json              # solve-baseline matrix (P1 gate; harness.runner)
 ```
+
+# Contact Information
+Sebastian Orths (sebastian.orth@edu.ruhr-uni-bochum.de)  
+Frederik Hüttemann (frederik.huettemann@rub.de)
